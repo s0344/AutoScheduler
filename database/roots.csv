@@ -1,0 +1,260 @@
+Prereq1,Prereq2,Prereq3,CRN,Subj,Crse,Sec,Cred,Title,Days,Start,End,Rem,Instructor,Date (MM/DD),Location
+,,,8481,ECON,150,61,3,Roots: Economics,MW,18:30,19:45,15,William Clyde,08/31-12/19,DLS 205
+,,,8482,ECON,150,62,3,Roots: Economics,MW,20:00,21:15,20,William Clyde,08/31-12/19,DLS 205
+,,,8483,ECON,203,1,3,Microeconomics,MR,8:00,9:15,25,Raul Velazquez,08/31-12/19,DLS 214
+,,,8484,ECON,203,2,3,Microeconomics,TWF,8:00,8:50,25,Georgios Koimisis,08/31-12/19,DLS 205
+,,,8485,ECON,203,3,3,Microeconomics,TWF,10:00,10:50,25,Fiona Maclachlan,08/31-12/19,DLS 300
+,,,8487,ECON,203,4,3,Microeconomics,MWR,11:00,11:50,25,TBA,08/31-12/19,DLS 301
+,,,8488,ECON,203,5,3,Microeconomics,TF,12:30,13:45,25,Natalia Boliari,08/31-12/19,DLS 207
+,,,8489,ECON,203,6,3,Microeconomics,TWF,13:00,13:50,25,Fiona Maclachlan,08/31-12/19,DLS 300
+,,,8490,ECON,203,7,3,Microeconomics,TF,14:00,15:15,25,Natalia Boliari,08/31-12/19,DLS 207
+,,,8491,ECON,203,8,3,Microeconomics,MWR,14:00,14:50,25,TBA,08/31-12/19,DLS 301
+,,,8492,ECON,203,9,3,Microeconomics,MTR,17:30,18:20,25,William Clyde,08/31-12/19,DLS 205
+,,,8493,ECON,203,61,3,Microeconomics,MW,18:30,19:45,25,Carlos G Elias,08/31-12/19,DLS 302
+,,,8494,ECON,203,62,3,Microeconomics,MW,20:00,21:15,25,Carlos G Elias,08/31-12/19,DLS 302
+,,,8495,ECON,204,61,3,Macroeconomics,MW,18:30,19:45,25,Tzu-Hao Huang,08/31-12/19,DLS 308
+ECON 203,ECON 204,BUAN 227,8496,ECON,302,1,3,Intermediate Macroeconomics,MR,12:00,13:15,20,Hyeon Park,08/31-12/19,DLS 208
+ECON 203,ECON 204,BUAN 227,8497,ECON,302,2,3,Intermediate Macroeconomics,MWR,15:00,15:50,20,Hyeon Park,08/31-12/19,DLS 208
+MATH 153 ,MATH 154,,8498,ECON,303,1,3,Mathematical Economics,MR,13:30,14:45,20,Hyeon Park,08/31-12/19,DLS 214
+ECON 203,ECON 204,,8499,ECON,305,1,3,Money and Banking,MR,9:30,10:45,25,Raul Velazquez,08/31-12/19,DLS 205
+ECON 203,ECON 204,,8500,ECON,305,2,3,Money and Banking,TF,11:00,12:15,25,Fiona Maclachlan,08/31-12/19,DLS 300
+ECON 203,ECON 204,,8501,ECON,305,3,3,Money and Banking,MR,13:30,14:45,25,Neal Horrell,08/31-12/19,DLS 302
+ECON 203,ECON 204,,8502,ECON,305,4,3,Money and Banking,MR,15:00,16:15,25,Neal Horrell,08/31-12/19,DLS 302
+ECON 203,MATH 154,,8503,ECON,332,1,3,Introduction to Environmental Economics,MR,12:00,13:15,25,Maria Jimena Gonzalez Ramirez,08/31-12/19,DLS 209
+ECON 203,ECON 204,,8504,ECON,334,1,3,International Economics,TF,11:00,12:15,25,Natalia Boliari,08/31-12/19,DLS 207
+ECON 302,,,8505,ECON,403,1,3,Seminar in Monetary Theory and Policy,MR,8:00,9:15,25,Hany Guirguis,08/31-12/19,DLS 216
+ECON 204,ECON 150,,8506,ECON,412,1,3,Economic Growth and Development,MWR,15:00,15:15,25,TBA,08/31-12/19,DLS 301
+ECON 203,ECON 204,BUAN 227,8507,ECON,433,1,3,Econometrics,MR,9:30,10:45,25,Hany Guirguis,08/31-12/19,DLS 216
+,,,8629,ENGL,110,1,3,First Year Composition,MR,8:00,9:15,0,TBA,08/31-12/19,HAY 303
+,,,8630,ENGL,110,2,3,First Year Composition,MR,8:00,9:15,0,TBA,08/31-12/19,DLS 212
+,,,8631,ENGL,110,3,3,First Year Composition,TWF,8:00,8:50,0,TBA,08/31-12/19,HAY 303
+,,,8632,ENGL,110,4,3,First Year Composition,TWF,8:00,8:50,0,TBA,08/31-12/19,HAY 202
+,,,8633,ENGL,110,5,3,First Year Composition,TWF,8:00,8:50,0,TBA,08/31-12/19,HAY 207
+,,,8634,ENGL,110,6,3,First Year Composition,TWF,9:00,9:50,0,TBA,08/31-12/19,HAY 202
+,,,8635,ENGL,110,7,3,First Year Composition,TWF,9:00,9:50,0,TBA,08/31-12/19,HAY 209
+,,,8636,ENGL,110,8,3,First Year Composition,TWF,9:00,9:50,0,Melinda Wilson,08/31-12/19,MGL 307
+,,,8637,ENGL,110,9,3,First Year Composition (ED),MR,9:30,10:45,0,Adam Koehler,08/31-12/19,DLS 212
+,,,8638,ENGL,110,10,3,First Year Composition-LL,MR,9:30,10:45,0,TBA,08/31-12/19,MGL 314
+,,,8639,ENGL,110,11,3,First Year Composition,TWF,10:00,10:50,0,Melinda Wilson,08/31-12/19,MGL 307
+,,,8640,ENGL,110,12,3,First Year Composition,MWR,11:00,11:50,0,TBA,08/31-12/19,MGL 312
+,,,8641,ENGL,110,13,3,First Year Composition-LL,TF,11:00,12:15,0,Melinda Wilson,08/31-12/19,MGL 202
+,,,8642,ENGL,110,14,3,First Year Composition,MR,12:00,13:15,0,Adam Koehler,08/31-12/19,DLS 212
+,,,8643,ENGL,110,15,3,First Year Composition,TF,14:00,15:15,0,Melinda Wilson,08/31-12/19,MGL 214
+,,,8644,ENGL,110,16,3,First Year Composition-LL,MWR,16:30,17:20,0,TBA,08/31-12/19,MGL 308
+,,,8645,ENGL,110,17,3,First Year Composition,MWR,16:30,17:20,0,TBA,08/31-12/19,DLS 312
+,,,8646,ENGL,110,18,3,First Year Composition,MWR,17:30,18:20,0,TBA,08/31-12/19,MGL 308
+,,,8647,ENGL,110,19,3,First Year Composition,MWR,17:30,18:20,0,TBA,08/31-12/19,MGL 310
+,,,8648,ENGL,110,61,3,First Year Composition,MR,18:30,19:45,0,TBA,08/31-12/19,MGL 310
+,,,8649,ENGL,150,1,3,Roots: Literature,TWF,10:00,10:50,20,Ashley Cross,08/31-12/19,MGL 207
+,,,8650,ENGL,150,2,3,Roots: Literature,MWR,11:00,11:50,20,Bridget Chalk,08/31-12/19,MGL 202
+,,,8651,ENGL,150,3,3,Roots: Literature,TWF,13:00,13:50,20,Ashley Cross,08/31-12/19,MGL 214
+,,,8652,ENGL,150,4,3,Roots: Literature,MR,13:30,14:45,20,David Witzling,08/31-12/19,DLS 307
+,,,8653,ENGL,150,5,3,Roots: Literature,MWR,14:00,14:50,20,Bridget Chalk,08/31-12/19,MGL 304
+,,,8654,ENGL,150,6,3,Roots: Literature,MR,15:00,16:15,20,David Witzling,08/31-12/19,DLS 303
+,,,8655,ENGL,151,1,3,Roots: Literature (FYS),TF,12:30,13:45,0,Deirdre O'Leary Cunningham,08/31-12/19,MGL 308
+,,,8656,ENGL,151,2,3,Roots: Literature (FYS),TF,14:00,15:15,0,Deirdre O'Leary Cunningham,08/31-12/19,MGL 314
+,,,8657,ENGL,209,1,1,Writing Consultant Training,,TBA,TBA,0,TBA,08/31-12/19,TBA
+,,,8658,ENGL,210,1,3,Advanced First Year Composition,TWF,10:00,10:50,18,Rocco Marinaccio,08/31-12/19,MGL 304
+,,,8659,ENGL,211,1,3,Written Communication,MR,8:00,9:15,18,TBA,08/31-12/19,HAY 205
+,,,8660,ENGL,211,2,3,Written Communication,MR,9:30,10:45,18,TBA,08/31-12/19,HAY 205
+,,,8661,ENGL,211,3,3,Written Communication,MR,9:30,10:45,18,TBA,08/31-12/19,HAY 208
+,,,8662,ENGL,211,4,3,Written Communication,MWR,11:00,11:50,18,TBA,08/31-12/19,MGL 304
+,,,8663,ENGL,211,5,3,Written Communication,MWR,16:30,17:20,18,TBA,08/31-12/19,HAY 202
+,,,8664,ENGL,211,6,3,Written Communication,MWR,17:30,18:20,18,TBA,08/31-12/19,HAY 202
+,,,8665,ENGL,240,1,3,Introduction to Creative Writing,MR,12:00,13:15,15,Dominika Wrozynski,08/31-12/19,MGL 207
+,,,8666,ENGL,245,1,3,Introduction to Shakespeare,TWF,10:00,10:50,25,Brian Chalk,08/31-12/19,MGL 308
+,,,8667,ENGL,256,1,3,Types of Film Experience,TF,11:00,12:15,25,Margaret Toth,08/31-12/19,DLS 312
+,,,8668,ENGL,256,2,3,Types of Film Experience,TF,12:30,13:45,25,Margaret Toth,08/31-12/19,DLS 312
+,,,8669,ENGL,260,1,3,Comedy and Tragedy,MR,12:00,13:15,25,Heidi Laudien,08/31-12/19,DLS 214
+,,,8670,ENGL,260,2,3,Comedy and Tragedy,MR,15:00,16:15,25,Heidi Laudien,08/31-12/19,DLS 216
+,,,8671,ENGL,274,1,3,Reading Poetry,MR,13:30,14:45,25,Dominika Wrozynski,08/31-12/19,MGL 202
+,,,8672,ENGL,287,1,3,Fantasy and Science Fiction,MWR,11:00,11:50,25,Jeffrey Myers,08/31-12/19,DLS 307
+,,,8673,ENGL,306,1,3,Introduction to Literary Study,TF,14:00,15:15,16,Margaret Toth,08/31-12/19,MGL 216
+,,,8674,ENGL,309,1,3,British Literature: Beowulf to the Augustan Age,TWF,10:00,10:50,25,Brother Patrick Horner,08/31-12/19,MGL 109
+,,,8675,ENGL,310,1,3,British Literature II: The Romantics through the 20th Century,MR,12:00,13:15,25,Bridget Chalk,08/31-12/19,MGL 214
+,,,8676,ENGL,326,1,3,Writing Studies,MR,15:00,16:15,25,Dominika Wrozynski,08/31-12/19,MGL 207
+,,,8677,ENGL,329,1,3,"Shakespeare: Comedies, Histories and Hamlet",TF,12:30,13:45,25,Brian Chalk,08/31-12/19,MGL 202
+,,,8678,ENGL,345,1,3,Environmental Literature and Ecocriticism,MR,15:00,16:15,25,Jeffrey Myers,08/31-12/19,DLS 212
+,,,8679,ENGL,350,1,3,Studies in Creative Writing:Fiction,MR,13:30,14:45,25,Adam Koehler,08/31-12/19,HAY 409
+,,,8680,ENGL,365,1,3,Children's Literature,MWR,16:30,17:20,25,Heidi Laudien,08/31-12/19,DLS 216
+,,,8681,ENGL,367,1,3,Literary Criticism,TF,14:00,15:15,25,Ashley Cross,08/31-12/19,DLS 308
+,,,9200,ENGL,382,1,3,"New York City, Modernity, and Postmodernity",TF,11:00,12:15,25,Rocco Marinaccio,08/31-12/19,MGL 304
+,,,8683,ENGL,395,1,3,Senior Seminar,T,17:30,20:15,15,Deirdre O'Leary Cunningham,08/31-12/19,MGL 438
+,,,8684,ENGL,399,99,3,Independent Study,,TBA,TBA,0,TBA,08/31-12/19,TBA
+,,,8685,ENGL,475,1,3,Internship,,TBA,TBA,0,TBA,08/31-12/19,TBA
+,,,9046,ART,150,1,3,Roots: Art,TF,12:30,13:45,20,Daniel Savoy,08/31-12/19,HAY 100
+,,,9047,ART,150,2,3,Roots: Art,TF,14:00,15:15,20,Daniel Savoy,08/31-12/19,HAY 100
+,,,9048,ART,151,1,3,Roots:Art (FYS),MR,9:30,10:45,14,Marisa Lerer,08/31-12/19,HAY 100
+,,,9049,ART,151,2,3,Roots:Art (FYS),MR,12:00,13:15,14,Marisa Lerer,08/31-12/19,HAY 100
+,,,9052,ART,212,1,3,Art of Digital Photography,T,11:00,13:45,10,Lili Kobielski,08/31-12/19,HAY 104
+,,,9053,ART,212,2,3,Art of Digital Photography,R,14:00,16:45,10,Lili Kobielski,08/31-12/19,HAY 104
+,,,9055,ART,213,1,3,Digital Drawing,M,14:00,16:45,10,Jacob Roesch,08/31-12/19,HAY 104
+,,,9056,ART,214,1,3,Introduction to Graphic Design,T,14:00,16:45,10,Jacob Roesch,08/31-12/19,HAY 104
+,,,9057,ART,214,2,3,Introduction to Graphic Design,W,14:00,16:45,10,Jacob Roesch,08/31-12/19,HAY 104
+,,,9050,ART,260,1,3,Monasticism and the Arts,TF,11:00,12:15,25,Maria Lucca,08/31-12/19,HAY 100
+,,,9058,ART,380,61,3,Digital Video Art: Editing and Production,R,18:30,21:15,10,Karla Carballar Osorio,08/31-12/19,HAY 104
+,,,9054,ART,402,1,3,Spl Tpc:Methods & Theory of Art History,R,14:00,16:45,10,Marisa Lerer,08/31-12/19,HAY 107
+,,,8440,HIST,150,1,3,Roots:History:Slavery and Liberation,TWF,9:00,9:50,20,Jeff Horn,08/31-12/19,DLS 303
+,,,8441,HIST,150,2,3,Roots:History:Slavery and Liberation,TWF,10:00,10:50,20,Jeff Horn,08/31-12/19,DLS 303
+,,,8443,HIST,150,4,3,Roots:History:The West and the World,MWR,16:30,17:20,20,Andrew James Tompkins,08/31-12/19,MGL 202
+,,,8444,HIST,150,5,3,Roots:History:The West and the World,MWR,17:30,18:20,20,Andrew James Tompkins,08/31-12/19,MGL 202
+,,,8445,HIST,152,1,3,Roots:Revolutionary Change (FYS),MR,13:30,14:45,0,Nefertiti Takla,08/31-12/19,MGL 109
+,,,9201,HIST,152,2,3,Roots: History (FYS),MR,15:00,16:15,0,Nefertiti Takla,08/31-12/19,MGL 109
+,,,8446,HIST,206,1,3,United States Through 1876,MR,9:30,10:45,25,Adam Issac Arenson,08/31-12/19,MGL 202
+,,,8447,HIST,206,2,3,United States Through 1876,MR,12:00,13:15,25,Adam Issac Arenson,08/31-12/19,MGL 202
+,,,8448,HIST,207,1,3,United States Since 1876,MR,9:30,10:45,25,Lydia Crafts,08/31-12/19,MGL 307
+,,,8449,HIST,207,2,3,United States Since 1876,MR,12:00,13:15,25,Lydia Crafts,08/31-12/19,MGL 307
+,,,8450,HIST,217,1,3,World History to 1600,MR,15:00,16:15,25,TBA,08/31-12/19,HAY 507
+,,,8451,HIST,218,61,3,World History Since 1600,MR,18:30,19:45,25,Nefertiti Takla,08/31-12/19,MGL 307
+,,,8452,HIST,240,1,3,East Asian Civilizations,TF,14:00,15:15,25,Paul Droubie,08/31-12/19,MGL 307
+,,,8453,HIST,300,1,3,Historical Methods,TF,12:30,13:45,15,Jeff Horn,08/31-12/19,DLS 303
+,,,8454,HIST,321,61,3,Spl Tpc:Pre-Modern Europe,M,18:30,21:15,25,TBA,08/31-12/19,MGL 308
+,,,8455,HIST,348,1,3,Modern Japan,TF,11:00,12:15,25,Paul Droubie,08/31-12/19,MGL 308
+,,,8456,HIST,362,1,3,"US Foreign Relations, 1900 to the Present",MR,13:30,14:45,25,Lydia Crafts,08/31-12/19,MGL 307
+,,,8687,LLRN,102,1,3,Classical Origins: West Culture,TWF,9:00,9:50,20,Brother Patrick Horner,08/31-12/19,MGL 109
+,,,9204,LLRN,102,2,3,Classical Origins: West Culture,MR,9:30,10:45,20,EricCharles DeSena,08/31-12/19,HAY 207
+,,,8732,LLRN,102,3,3,Classical Origins: West Culture,MWR,11:00,11:50,20,David Bollert,08/31-12/19,DLS 205
+,,,9205,LLRN,102,4,3,Classical Origins: West Culture,MR,12:00,13:15,20,Antonio Cordoba,08/31-12/19,HAY 507
+,,,9206,LLRN,102,5,3,Classical Origins: West Culture,MR,12:00,13:15,20,EricCharles DeSena,08/31-12/19,HAY 207
+,,,9207,LLRN,102,6,3,Classical Origins: West Culture,TF,12:30,13:45,20,Thomas S. Ferguson,08/31-12/19,MGL 109
+,,,9208,LLRN,151,1,3,Classical Origins:Western Culture (FYS),TF,11:00,12:15,0,Evelyn Scaramella,08/31-12/19,MGL 201
+,,,8257,MUSC,129,1,1,Beginning Vocal Instruction,,TBA,TBA,6,TBA,08/31-12/19,TBA
+MUSC 129,,,8258,MUSC,130,1,1,Advanced Vocal Instruction,,TBA,TBA,6,TBA,08/31-12/19,TBA
+,,,8259,MUSC,131,98,1,Manhattan College Singers,W,19:00,21:00,6,TBA,08/31-12/19,THO 517
+,,,8260,MUSC,131,99,1,Manhattan College Singers,W,19:00,21:00,6,Andrew Bauer,08/31-12/19,THO 517
+,,,8261,MUSC,132,96,1,Manhattan College Orchestra,M,19:00,21:00,6,Gwendolyn Toth,08/31-12/19,THO 517
+,,,8264,MUSC,132,97,1,Manhattan College Orchestra (Winds),M,19:00,21:00,6,Geoffrey Mattoon,08/31-12/19,THO 517
+,,,8265,MUSC,132,98,1,Manhattan College Orchestra (Upper Strings),M,19:00,21:00,6,Theresa Salomon,08/31-12/19,THO 517
+,,,8266,MUSC,132,99,1,Manhattan College Orchestra (Lower Strings),M,19:00,21:00,6,TBA,08/31-12/19,THO 517
+,,,8262,MUSC,133,98,1,Manhattan College Jazz Band (Percussion),T,19:00,21:00,6,Jacob Robinson,08/31-12/19,THO 517
+,,,8263,MUSC,133,99,1,Manhattan College Jazz Band (Winds),T,19:00,21:00,6,Geoffrey Mattoon,08/31-12/19,THO 517
+,,,8267,MUSC,150,1,3,Roots: Music,TWF,9:00,9:50,20,Gregory Menillo,08/31-12/19,HAY 108
+,,,8268,MUSC,150,2,3,Roots: Music,MR,9:30,10:45,20,Mark A. Pottinger,08/31-12/19,HAY 108
+,,,8269,MUSC,150,3,3,Roots: Music,TWF,10:00,10:50,20,Gregory Menillo,08/31-12/19,HAY 108
+,,,8270,MUSC,150,4,3,Roots: Music,MR,13:30,14:45,20,Mark A. Pottinger,08/31-12/19,HAY 108
+,,,8271,MUSC,208,1,3,Piano Skills and Techniques,MR,8:00,9:15,9,James Behr,08/31-12/19,HAY 105
+,,,8272,MUSC,208,2,3,Piano Skills and Techniques,MR,9:30,10:45,9,James Behr,08/31-12/19,HAY 105
+,,,8274,MUSC,209,1,3,Guitar Skills and Techniques,MR,9:30,10:45,9,Daniel Garcia,08/31-12/19,THO 517
+,,,8275,MUSC,209,2,3,Guitar Skills and Techniques,MR,12:00,13:15,9,Daniel Garcia,08/31-12/19,THO 517
+,,,8277,MUSC,216,1,3,Introduction To World Music-LL,TF,11:00,12:15,14,Gregory Menillo,08/31-12/19,HAY 108
+,,,8278,MUSC,220,1,3,Fundamentals of Music Theory,MR,12:00,13:15,9,James Behr,08/31-12/19,HAY 108
+,,,,MUSC,220,1,,,W,11:00,11:50,,James Fleming,08/31-12/19,HAY 105
+,,,8279,MUSC,240,61,3,Catholic Mass and its Music,M,18:30,21:15,25,William Mulligan,08/31-12/19,HAY 108
+,,,8273,MUSC,258,1,3,Piano Skills & Techniques II,MR,12:00,13:15,9,James Behr,08/31-12/19,HAY 105
+,,,8276,MUSC,259,1,3,Guitar Skills & Techniques II,W,14:00,16:45,9,Daniel Garcia,08/31-12/19,THO 517
+,,,8281,MUSC,300,1,3,History of Rock and Roll,MR,15:00,16:15,24,James Fleming,08/31-12/19,HAY 108
+,,,8282,MUSC,380,1,3,History of Sound Recording & Audio Technology,MR,13:30,14:45,14,Dennis Sullivan,08/31-12/19,HAY 105
+,,,8283,MUSC,390,61,3,Digital Audio Recording and Editing,W,18:30,21:15,6,Daniel Garcia,08/31-12/19,HAY 105
+,,,8284,MUSC,393,61,3,Audio Mixing & Music Prod,M,18:30,21:15,9,Pablo San Martin,08/31-12/19,HAY 105
+,,,8725,PHIL,150,1,3,Roots: Philosophy,TF,11:00,12:15,20,Jordan Pascoe,08/31-12/19,DLS 301
+,,,8726,PHIL,150,2,3,Roots: Philosophy,TF,12:30,13:45,20,Jordan Pascoe,08/31-12/19,DLS 301
+,,,8727,PHIL,150,3,3,Roots: Philosophy,MR,15:00,16:15,20,Eoin O'Connell,08/31-12/19,MGL 307
+,,,8728,PHIL,150,4,3,Roots: Philosophy,MWR,16:30,17:20,20,Harrison Fluss,08/31-12/19,DLS 205
+,,,8729,PHIL,150,61,3,Roots: Philosophy,R,18:30,21:15,20,TBA,08/31-12/19,DLS 208
+,,,8731,PHIL,152,1,3,Roots: Philosophy (FYS),TWF,9:00,9:50,14,Heidi Furey,08/31-12/19,DLS 216
+,,,8730,PHIL,152,2,3,Roots: Philosophy (FYS),MR,9:30,10:45,14,David Bollert,08/31-12/19,DLS 307
+,,,8733,PHIL,201,1,3,Ethics,MR,8:00,9:15,25,TBA,08/31-12/19,DLS 312
+,,,8734,PHIL,201,2,3,Ethics,TWF,13:00,13:50,25,Sarah Linda Scott,08/31-12/19,HAY 107
+,,,8735,PHIL,201,3,3,Ethics,T,11:00,13:45,25,Harrison Fluss,08/31-12/19,HAY 202
+,,,8736,PHIL,201,4,3,Ethics,TF,14:00,15:15,25,Sarah Linda Scott,08/31-12/19,HAY 207
+,,,8737,PHIL,201,5,3,Ethics,F,15:30,18:00,25,Harrison Fluss,08/31-12/19,DLS 205
+,,,8738,PHIL,201,6,3,Ethics,MWR,17:30,18:20,25,Harrison Fluss,08/31-12/19,DLS 216
+,,,8739,PHIL,201,61,3,Ethics,M,18:30,21:15,25,Zachary Gekas,08/31-12/19,DLS 301
+,,,8740,PHIL,201,62,3,Ethics,W,18:30,21:15,25,Donn Mitchell,08/31-12/19,DLS 301
+,,,8743,PHIL,210,1,3,Faith and Reason,MR,13:30,14:45,25,David Bollert,08/31-12/19,MGL 310
+,,,8741,PHIL,213,1,3,Introduction to Logic,TWF,10:00,10:50,25,Heidi Furey,08/31-12/19,DLS 216
+,,,8742,PHIL,230,1,3,Philosophy of Law,TF,14:00,15:15,25,Jordan Pascoe,08/31-12/19,DLS 301
+,,,8745,PHIL,316,1,3,Modern Philosophy,TF,11:00,12:15,25,Sarah Linda Scott,08/31-12/19,MGL 216
+,,,8746,PHIL,330,61,3,American Philosophy,T,18:30,21:15,25,Mitchell S. Aboulafia,08/31-12/19,DLS 208
+,,,8747,RELS,110,1,3,The Nature and Experience of Religion,TWF,8:00,8:50,25,Brother Daniel A Gardner,08/31-12/19,MGL 216
+,,,8748,RELS,110,2,3,The Nature and Experience of Religion,MR,8:00,9:15,25,Jovita L. Geraci,08/31-12/19,DLS 301
+,,,8749,RELS,110,3,3,The Nature and Experience of Religion,MR,8:00,9:15,25,Elizabeth Rigotti,08/31-12/19,DLS 207
+,,,8750,RELS,110,4,3,The Nature and Experience of Religion,TWF,9:00,9:50,25,Robert Bimonte,08/31-12/19,DLS 214
+,,,8751,RELS,110,5,3,The Nature and Experience of Religion,TWF,9:00,9:50,25,Michele Saracino,08/31-12/19,DLS 205
+,,,8752,RELS,110,6,3,The Nature and Experience of Religion,TWF,9:00,9:50,25,Kevin Ahern,08/31-12/19,MGL 201
+,,,8753,RELS,110,7,3,The Nature and Experience of Religion,MR,9:30,10:45,25,Jovita L. Geraci,08/31-12/19,DLS 301
+,,,8754,RELS,110,8,3,The Nature and Experience of Religion,MR,9:30,10:45,25,Andrew Skotnicki,08/31-12/19,MGL 310
+,,,8755,RELS,110,9,3,The Nature and Experience of Religion,TWF,10:00,10:50,25,Jawanza Eric Clark,08/31-12/19,DLS 212
+,,,8756,RELS,110,10,3,The Nature and Experience of Religion,TWF,10:00,10:50,25,Michele Saracino,08/31-12/19,DLS 205
+,,,8757,RELS,110,11,3,The Nature and Experience of Religion,TWF,10:00,10:50,25,Kevin Ahern,08/31-12/19,MGL 201
+,,,8758,RELS,110,12,3,The Nature and Experience of Religion,MWR,11:00,11:50,25,William Aidan McGrath,08/31-12/19,DLS 216
+,,,8759,RELS,110,13,3,The Nature and Experience of Religion,TF,11:00,12:15,25,Wade Mitchell,08/31-12/19,DLS 216
+,,,8760,RELS,110,14,3,The Nature and Experience of Religion,TF,11:00,12:15,25,Claudia Setzer,08/31-12/19,DLS 307
+,,,8761,RELS,110,15,3,The Nature and Experience of Religion,MR,12:00,13:15,25,Andrew Skotnicki,08/31-12/19,MGL 216
+,,,8762,RELS,110,16,3,The Nature and Experience of Religion,MR,12:00,13:15,15,Rodney Sebastian,08/31-12/19,HAY 201
+,,,8764,RELS,110,17,3,Nature and Exp of Religion-LL,MR,12:00,13:15,18,Jason Wyman,08/31-12/19,MGL 201
+,,,8765,RELS,110,18,3,The Nature and Experience of Religion,TF,12:30,13:45,25,Courtney Bryant,08/31-12/19,MGL 201
+,,,8766,RELS,110,19,3,The Nature and Experience of Religion,MR,13:30,14:45,15,Rodney Sebastian,08/31-12/19,HAY 210
+,,,8768,RELS,110,20,3,Nature and Exp of Religion-LL,TF,14:00,15:15,18,Mehnaz M Afridi,08/31-12/19,DLS 214
+,,,8769,RELS,110,21,3,The Nature and Experience of Religion,TF,14:00,15:15,25,Courtney Bryant,08/31-12/19,MGL 109
+,,,8770,RELS,110,22,3,The Nature and Experience of Religion,MWR,15:00,15:50,25,William Aidan McGrath,08/31-12/19,MGL 308
+,,,8771,RELS,110,23,3,Nature and Exp of Religion-LL,MR,15:00,16:15,18,Wade Mitchell,08/31-12/19,HAY 409
+,,,8772,RELS,152,1,3,Nature & Exp of Religion (FYS),MWR,11:00,11:50,15,Br.Robert Berger,08/31-12/19,MGL 201
+,,,8773,RELS,152,2,3,Nature & Exp of Religion (FYS),MWR,14:00,14:50,15,Natalia Imperatori-Lee,08/31-12/19,MGL 438
+,,,8763,RELS,161,1,3,Nat & Exp Rel: VA Stress Red:Warriors at Ease,MR,12:00,13:15,15,Rodney Sebastian,08/31-12/19,HAY 201
+,,,8767,RELS,161,2,3,The Nature and Experience of Religion: Veterans' Stress Reduction Program,MR,13:30,14:45,10,Rodney Sebastian,08/31-12/19,HAY 210
+,,,8774,RELS,200,1,3,Spl Tpc:Catholic Sacraments,TWF,8:00,8:50,25,Thomas Harold Franks,08/31-12/19,MGL 207
+,,,9051,RELS,200,2,3,Spl Tpc: Monasticism and the Arts,TF,11:00,12:15,25,Maria Lucca,08/31-12/19,HAY 100
+,,,8744,RELS,200,3,3,Spl Tpc:Faith and Reason,MR,13:30,14:45,25,David Bollert,08/31-12/19,MGL 310
+,,,8775,RELS,200,4,3,Spl Tpc:Apocalypticism,WR,16:30,18:20,25,Mary Jett,08/31-12/19,MGL 207
+RELS 110+RELS 151 ,,,8776,RELS,204,1,3,Religion and Social Justice,MR,9:30,10:45,25,Jason Wyman,08/31-12/19,MGL 201
+RELS 110+RELS 151 ,,,8777,RELS,205,1,3,Urban America and Catholic Social Teaching,W,14:00,15:50,15,Lois Harr,08/31-12/19,MGL 207
+RELS 110+RELS 151 ,,,8779,RELS,206,1,3,Understanding the Bible,TWF,10:00,10:50,25,Claudia Setzer,08/31-12/19,DLS 307
+RELS 110+RELS 151 ,,,8780,RELS,209,61,3,Paul,M,18:30,21:15,25,Robert Brian Lewis,08/31-12/19,DLS 307
+RELS 110+RELS 151 ,,,8781,RELS,210,1,3,Jesus,MR,16:30,18:20,25,Robert Brian Lewis,08/31-12/19,DLS 307
+RELS 110+RELS 151 ,,,8782,RELS,214,61,3,Dante,TWF,10:00,10:50,25,Thomas S. Ferguson,08/31-12/19,MGL 306
+,,,8783,RELS,218,61,3,The Bible & Film,W,18:30,21:15,25,Stephanie Powell,08/31-12/19,DLS 304
+RELS 110+RELS 151 ,,,8784,RELS,225,1,3,Contemporary Catholicism,MWR,14:00,14:50,25,Br.Robert Berger,08/31-12/19,MGL 201
+RELS 110+RELS 151 ,,,8785,RELS,225,2,3,Contemporary Catholicism,MWR,15:00,15:50,25,Br.Robert Berger,08/31-12/19,MGL 201
+RELS 110+RELS 151 ,,,8786,RELS,227,1,3,The Gospel of John,TWF,13:00,13:55,25,Claudia Setzer,08/31-12/19,MGL 306
+RELS 110+RELS 151 ,,,8787,RELS,238,1,3,Theologies Of Liberation,TF,11:00,12:15,25,Jawanza Eric Clark,08/31-12/19,DLS 308
+RELS 110+RELS 151 ,,,8788,RELS,238,2,3,Theologies Of Liberation,TF,14:00,15:15,25,Jawanza Eric Clark,08/31-12/19,DLS 312
+,,,8373,RELS,255,1,3,Introduction to Peace and Justice Studies,TF,14:00,15:15,30,Kevin Ahern,08/31-12/19,MGL 201
+RELS 110 ,,,8280,RELS,256,61,3,Catholic Mass and Its Music,M,18:30,21:15,25,William Mulligan,08/31-12/19,HAY 108
+RELS 110+RELS 151 ,,,8790,RELS,300,1,3,Spl Tpc:Muslims and the Holocaust,TWF,9:00,9:50,25,Mehnaz M Afridi,08/31-12/19,DLS 304
+RELS 110+RELS 151 ,,,8789,RELS,300,2,3,"Spl Tpc:17th Century, Milton, & St. LaSalle",TF,11:00,12:15,25,Thomas S. Ferguson,08/31-12/19,MGL 214
+RELS 110+RELS 151 ,,,8791,RELS,300,3,3,Spl Tpc:A Spirituality of Empathy (WE),TF,12:30,13:45,15,Michele Saracino,08/31-12/19,MGL 438
+,,,8792,RELS,314,1,3,Hinduism,MWR,16:30,17:20,25,Rodney Sebastian,08/31-12/19,HAY 205
+RELS 110+RELS 151 ,,,8793,RELS,321,61,3,Psychology & Religion,R,18:30,21:15,25,Jeff Pettis,08/31-12/19,MGL 207
+RELS 110+RELS 151 ,,,8794,RELS,355,61,3,Islam,M,18:30,21:15,25,Nasrin Rouzati,08/31-12/19,MGL 207
+RELS 110+RELS 151 ,,,9212,RELS,355,62,3,Islam,W,18:30,21:15,25,Nasrin Rouzati,08/31-12/19,MGL 207
+RELS 110+RELS 151 ,,,8795,RELS,357,1,3,Religions of China & East Asia,MR,9:30,10:45,25,William Aidan McGrath,08/31-12/19,DLS 209
+RELS 110+RELS 151 ,,,8796,RELS,372,1,3,Religion and Science,MR,13:30,14:45,25,Wade Mitchell,08/31-12/19,HAY 208
+RELS 110+RELS 151 ,,,8797,RELS,372,2,3,Religion and Science,TF,12:30,13:45,25,Wade Mitchell,08/31-12/19,HAY 108
+RELS 110+RELS 151 ,,,8798,RELS,373,61,3,Death as a Fact of Life,T,18:30,21:15,25,Jeff Pettis,08/31-12/19,MGL 202
+RELS 110+RELS 151 ,,,8799,RELS,373,62,3,Death as a Fact of Life,R,18:30,21:15,25,Stephanie Powell,08/31-12/19,DLS 307
+RELS 110+RELS 151 ,,,8800,RELS,374,1,3,Women in Western Religion,MWR,11:00,11:50,25,Natalia Imperatori-Lee,08/31-12/19,DLS 304
+RELS 110+RELS 151 ,,,8801,RELS,374,2,3,Women in Western Religion,MWR,15:00,15:50,25,Natalia Imperatori-Lee,08/31-12/19,MGL 202
+RELS 110+RELS 151 ,,,8802,RELS,375,61,3,Religion and the Body:Black Women's Perspective,W,18:30,21:15,25,Courtney Bryant,08/31-12/19,MGL 307
+RELS 110+RELS 151 ,,,8803,RELS,399,1,3,Criminal Justice Ethics:Rikers' Island,T,14:00,17:00,10,Andrew Skotnicki,08/31-12/19,TBA
+,,,8804,RELS,470,1,3,Majors' Seminar:Hindu Nationalism,M,16:30,18:20,15,Robert M. Geraci,08/31-12/19,MGL 438
+,,,8457,SOC,150,1,3,Roots:Contemporary American Society,MR,8:00,9:15,24,Cory Blad,08/31-12/19,MGL 207
+,,,8458,SOC,150,2,3,Roots:Ethical Foundations of Criminal Justice,MR,9:30,10:45,24,Madeleine Novich,08/31-12/19,DLS 312
+,,,8459,SOC,150,3,3,Roots:The Adaptable Human,MWR,11:00,11:50,24,Robin Lovell,08/31-12/19,MGL 109
+,,,8460,SOC,150,4,3,Roots:Contemporary American Society,MR,13:30,14:45,24,Kimberly Torres,08/31-12/19,MGL 306
+,,,8461,SOC,153,1,3,Roots:Ethical Foundations of Criminal Justice (FYS),MWR,11:00,11:50,14,Madeleine Novich,08/31-12/19,DLS 209
+,,,8462,SOC,201,1,3,Introduction to Sociology,TF,11:00,12:15,30,Nathalie Chara,08/31-12/19,HAY 409
+,,,8463,SOC,201,2,3,Introduction to Sociology,MR,12:00,13:15,30,Ellen Casper Flood,08/31-12/19,MGL 308
+,,,8464,SOC,201,3,3,Introduction to Sociology,MR,12:00,13:15,30,Kimberly Torres,08/31-12/19,MGL 304
+,,,8465,SOC,201,4,3,Introduction to Sociology,TF,14:00,15:15,30,Nathalie Chara,08/31-12/19,HAY 210
+,,,8466,SOC,201,5,3,Introduction To Sociology-LL,MR,15:00,16:15,18,Ellen Casper Flood,08/31-12/19,HAY 207
+,,,8467,SOC,201,6,3,Introduction to Sociology,MWR,16:30,17:20,30,Nicola Marcucci,08/31-12/19,HAY 210
+,,,9001,SOC,201,7,3,Introduction to Sociology,MWR,17:30,18:20,30,Nicola Marcucci,08/31-12/19,HAY 210
+,,,9002,SOC,220,1,3,Social Problems,TF,11:00,12:15,25,Ricardo Dello Buono,08/31-12/19,DLS 302
+,,,9003,SOC,250,1,3,Introduction to GIS,MR,13:30,14:45,25,Robin Lovell,08/31-12/19,DLS 309
+,,,9004,SOC,270,1,3,Criminology,TWF,10:00,10:50,30,Rafael Santana,08/31-12/19,DLS 302
+,,,9005,SOC,275,1,3,Police & Society,TWF,9:00,9:50,25,Rafael Santana,08/31-12/19,DLS 302
+,,,9007,SOC,290,1,3,Codes of Gender,T,12:30,13:45,30,Nadeen M Thomas,08/31-12/19,HAY 409
+,,,,SOC,290,1,,,F,12:30,13:45,,Nadeen M Thomas,08/31-12/19,HAY 202
+,,,9008,SOC,295,1,3,Capitalism,MR,9:30,10:45,25,Cory Blad,08/31-12/19,MGL 207
+,,,9009,SOC,307,1,3,Research Methods,MR,9:30,10:45,25,Robin Lovell,08/31-12/19,MGL 216
+,,,9010,SOC,312,1,3,Social Service Practice,MR,15:00,16:15,25,Carmen Susana Fajardo,08/31-12/19,HAY 208
+,,,9011,SOC,313,61,3,Family Law,T,18:30,21:15,20,Jennifer Neal Clark,08/31-12/19,DLS 307
+,,,8475,SOC,315,1,3,Spl Tpc: Civil Rights Law,TWF,10:00,10:50,25,Sheetal J Kale,08/31-12/19,DLS 207
+,,,9012,SOC,324,1,3,Sociological Theories,TF,12:30,13:45,25,Ricardo Dello Buono,08/31-12/19,HAY 210
+,,,9013,SOC,334,1,3,Sustainable Development,MWR,16:30,17:20,30,Dart Westphal,08/31-12/19,MGL 307
+,,,9014,SOC,362,1,3,Modern American Gangs,MR,13:30,14:45,25,Madeleine Novich,08/31-12/19,MGL 308
+,,,8997,SPCH,204,1,3,Fundamentals of Speech,TF,11:00,12:15,18,Patrice Athanasidy,08/31-12/19,LEO 233
+,,,8998,SPCH,204,2,3,Fundamentals of Speech,TF,11:00,12:15,18,Golda Solomon,08/31-12/19,LEO 235
+,,,8999,SPCH,204,3,3,Fundamentals of Speech,R,11:00,13:45,18,Gail Small,08/31-12/19,LEO 256
+,,,9000,SPCH,204,4,3,Fundamentals of Speech,TF,12:30,13:45,18,Golda Solomon,08/31-12/19,LEO 235

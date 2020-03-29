@@ -1,0 +1,22 @@
+Prereq 1 ,Prereq2 ,Prereq3,CRN,Dept,Crse,Sec,Cred,Title,Days,Start,End,Rem,Instructor,Date (MM/DD),Location
+,,,8190,CMPT,101,1,3,Computer Science I,MR,8:00,9:15,14,Mahmoud Abdelsalam,08/31-12/19,RLC 104
+,,,8191,CMPT,101,2,3,Computer Science I,TF,11:00,12:15,14,Tina Tian,08/31-12/19,RLC 104
+,,,8192,CMPT,101,3,3,Computer Science I,TF,12:30,13:45,14,Tina Tian,08/31-12/19,RLC 104
+,,,8193,CMPT,101,4,3,Computer Science I,TF,2:00,15:15,24,Miaomiao Zhang,08/31-12/19,RLC 104
+CMPT 101,,,8194,CMPT,102,1,3,Computer Science II,MWR,11:00,11:50,24,Mahmoud Abdelsalam,08/31-12/19,RLC 104
+,,,8195,CMPT,155,1,3,Computer Applications for Life Sciences,TWF,8:00,8:50,24,Thurman Solano,08/31-12/19,RLC 102
+,,,8196,CMPT,155,2,3,Computer Applications for Life Sciences,TWF,9:00,9:50,24,Thurman Solano,08/31-12/19,RLC 102
+CMPT 102+CMPT 201,,,8197,CMPT,239,1,4,Data Structures & Algorithms,MR,9:30,10:45,16,Mahmoud Abdelsalam,08/31-12/19,RLC 104
+CMPT 102+CMPT 201,,,8197,CMPT,239,1,,Data Structures & Algorithms,W,9:00,9:50,,Mahmoud Abdelsalam,08/31-12/19,RLC 104
+CMPT 102+CMPT 201,,,8198,CMPT,239,2,4,Data Structures & Algorithms,MR,15:00,16:15,16,Arafat Abu Mallouh,08/31-12/19,RLC 107
+CMPT 102+CMPT 201,,,8198,CMPT,239,2,,Data Structures & Algorithms,W,15:00,15:50,,Arafat Abu Mallouh,08/31-12/19,RLC 107
+CMPT 102+CMPT 201,CMPT 238,,8201,CMPT,353,1,3,Systems Programming,TF,12:30,13:45,14,Kashifuddin M. Qazi,08/31-12/19,RLC 102A
+CMPT 102+CMPT 201,CMPT 238,,8202,CMPT,353,2,3,Systems Programming,TF,14:00,15:15,14,Kashifuddin M. Qazi,08/31-12/19,RLC 102A
+CMPT 102+CMPT 201,,,8199,CMPT,360,1,3,Object Oriented Design with Java,MR,12:00,13:15,16,Ankur Agrawal,08/31-12/19,RLC 104
+CMPT 102+CMPT 201,,,8200,CMPT,360,2,3,Object Oriented Design with Java,MR,13:30,14:45,16,Ankur Agrawal,08/31-12/19,RLC 104
+,,,8204,CMPT,364,1,3,Cloud Computing and Virtualization,TF,11:00,12:15,12,Kashifuddin M. Qazi,08/31-12/19,RLC 105
+CMPT 102+CMPT 201,CMPT 335,CMPT 238 ,8206,CMPT,438,1,3,Algorithms,F,15:30,18:00,20,Tina Tian,08/31-12/19,RLC 107
+CMPT 102+CMPT 201,MATH 186,,8208,CMPT,439,1,3,Numerical Computation,TF,11:00,12:15,15,Miaomiao Zhang,08/31-12/19,RLC 102
+CMPT 102+CMPT 201,MATH 186,,8207,CMPT,439,2,3,Numerical Computation,MR,15:00,16:15,15,Igor Aizenberg,08/31-12/19,RLC 104
+ CMPT 335+CMPT 360,,,8203,CMPT,456,1,3,Software Engineering,MR,9:30,10:45,30,Arafat Abu Mallouh,08/31-12/19,RLC 105
+,,,8205,CMPT,463,1,3,Tpc in Computer Science:Parallel Computing,MR,12:00,13:15,12,Arafat Abu Mallouh,08/31-12/19,RLC 105
