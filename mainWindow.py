@@ -174,7 +174,10 @@ class MainWindow(QMainWindow):
 
     def click_submit(self):
         # print(self.guiData.dataValidation())
+        '''
         print("OK")
         filtedInst = self.guiData.getNotSelectedInst()
         print(filtedInst)
+        '''
+        coreDriver(self.guiData)
         self.showNextPanel()

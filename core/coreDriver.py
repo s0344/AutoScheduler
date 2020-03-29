@@ -24,12 +24,12 @@ def coreDriver(data):
     # convert day start and end from string to timedelta object
     print("> preference start time convert...  ", end="")
     for time in data.getStartTime():
-        dayStart.append(datetime.strptime(time,"%H:%M"))
+        dayStart.append(time)
     print("done")
 
     print("> preference end time convert...  ", end="")
     for time in data.getEndTime():
-        dayEnd.append(datetime.strptime(time, "%H:%M"))
+        dayEnd.append(time)
     print("done")
 
     # adding data to a course list
