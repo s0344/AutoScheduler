@@ -192,7 +192,6 @@ class DB():
         result = self.cur.fetchall()
         self.cur.close()
         return result
-
     # return the count of lesson for each crn
     def getLessonCount(self, subj, crse):
         self.cur = self.db.cursor()
