@@ -204,17 +204,6 @@ class DB():
         self.cur.close()
         return result
 
-    # return prerequisites of course
-    def getPrereq(self, subj, crse):
-        self.cur = self.db.cursor()
-        sql = "select prereq1, prereq2, prereq3 from classes where subj = %s and crse = %s"
-        var = (subj, crse)
-        self.cur.execute(sql, var)
-        result = self.cur.fetchall()
-        result = result[0]
-        self.cur.close()
-        return result
-
     # close the database connection
     def close(self):
         self.db.close()
