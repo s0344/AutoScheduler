@@ -78,22 +78,19 @@ if __name__ == '__main__':
         classes.printDetailData()
         classes.printSimpleData()
     '''
-    if 3:
-        print("in")
-    else:
-        print("not in")
+    class idk():
+        def __init___(self):
 
-    if 2:
-        print("in")
-    else:
-        print("not in")
+    def sth():
+        # empty nested list: match and extra day off(3), match(2), no match but have day off(1), no dayoff(0)
+        list = {}
+        values = [12,48,1,9,10]
+        me = ["me1", "me2", "me3", "me4", "me5"]
+        length = len(me)
+        for i in range(length):
+            list[me[i]] = values[i]
 
-    if 1:
-        print("in")
-    else:
-        print("not in")
 
-    if 0:
-        print("in")
-    else:
-        print("not in")
+        print(list)
+
+    sth()
