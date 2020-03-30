@@ -38,7 +38,7 @@ class PanelPriority(QMainWindow):
         self.label = QLabel("Explanation: ....")
         self.label.setFont(self.listFont)
         # Priority List
-        defaultPriority = ['School Day', 'Route Score', 'Length of Class', 'Start Time', 'End Time', 'Instructor']
+        defaultPriority = ['School Day', 'Length of Class', 'Start Time', 'End Time', 'Instructor']
         self.priorityList = MainForm(defaultPriority)
         self.priorityList.show()
         self.priorityList.view.setFont(self.listFont)
