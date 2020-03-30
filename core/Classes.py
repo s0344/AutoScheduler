@@ -64,7 +64,9 @@ class Classes():
         starttime = datetime.strptime(start, '%H:%M')
         endtime = datetime.strptime(end, '%H:%M')
         result = endtime - starttime
-        return result
+        hour = result.seconds//3600
+        min = (result.seconds//60) % 60
+        return str(hour)+":"+str(min)
 
     def checkPrereq(self, prereq):
         data = prereq.split("+")
@@ -103,7 +105,7 @@ class Classes():
 
         print("class time: ",end="")
         for time in self.classTime:
-            print(str(time),end=", ")
+            print(time,end=", ")
         print()
         print("location: ",self.location)
         print("date: ",self.date)

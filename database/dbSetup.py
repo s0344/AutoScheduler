@@ -1,6 +1,7 @@
 from database.DB import *
 from core.Course import *
 
+
 if __name__ == '__main__':
 
     csFile = 'cs.csv'
@@ -25,6 +26,10 @@ if __name__ == '__main__':
     print("hello")
     for row in map:
         print(row[0],row[1])
+
+
+    mapDict = {row[0]:row[1] for row in map}
+    print(mapDict)
     print("hello")
     print(l1)
     #print(type(l1))
@@ -66,23 +71,11 @@ if __name__ == '__main__':
 
     testdb.close()
 
-    '''
 
+    '''
     c = Course("CMPT","239","1")
     for classes in c.classList:
         classes.printDetailData()
         classes.printSimpleData()
     '''
-    '''
-    test = ""
-    test1 = "123"
-    test2 = "123+345"
 
-    data = test.split("+")
-    data1 = test1.split("+")
-    data2 = test2.split("+")
-
-    print(data)
-    print(data1)
-    print(data2)
-    '''
