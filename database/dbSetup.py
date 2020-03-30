@@ -3,7 +3,7 @@ from core.Course import *
 
 
 if __name__ == '__main__':
-
+    '''
     csFile = 'cs.csv'
     langFile = 'lang.csv'
     rootsFile = 'roots.csv'
@@ -71,11 +71,29 @@ if __name__ == '__main__':
 
     testdb.close()
 
-
+    '''
     '''
     c = Course("CMPT","239","1")
     for classes in c.classList:
         classes.printDetailData()
         classes.printSimpleData()
     '''
+    if 3:
+        print("in")
+    else:
+        print("not in")
 
+    if 2:
+        print("in")
+    else:
+        print("not in")
+
+    if 1:
+        print("in")
+    else:
+        print("not in")
+
+    if 0:
+        print("in")
+    else:
+        print("not in")
