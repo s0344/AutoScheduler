@@ -11,7 +11,7 @@ class Schedule():
         self.schoolDayCheck = None
         self.startCheck = None
         self.endCheck = None
-        self.classLenCheck = None
+        self.classLenCheck = True
         self.instCheck = None
         self.routeScore = None
         self.setupCheck()
@@ -64,7 +64,7 @@ class Schedule():
                 for i in range(5):
                     if weekDay[index] in day:
                         self.weekList.append((classes.start[index],classes.end[index]))
-                index += 1 # increment to the index for next lesson
+                index += 1  # increment to the index for next lesson
 
         # PART 2 - check the priority state
         # calculate day off check, start check, end check, and classLength check.
@@ -124,7 +124,7 @@ class Schedule():
 
     # check the state of schoolday, start, end, and classLength
     def timeCheck(self, schoolDayPref, startPref, endPref, classLenList, classLenPref):
-        schoolDayList = [] # store a list of day off
+        schoolDayList = []  # store a list of day off
         dayOffList = []  # store the index of the day off in day off list to identify which day is day off
         startCount = 0
         endCount = 0
@@ -141,14 +141,13 @@ class Schedule():
                 if classLenRef[i] in classLenList:  # when it is 0 but classLength is in the list
                     self.classLenCheck = False
                     break
-        self.classLenCheck = True
 
         # handling start and end check
         for day in self.weekList:
             # check day off first
             if len(day) > 0:
                 schoolDayList.append(1)
-            else:  # when that day is a dayoff
+            else:  # when that day is a day off
                 schoolDayList.append(0)
                 startCount += 1
                 endCount += 1
@@ -177,9 +176,9 @@ class Schedule():
 
         if mode:
             if len(dayOffList):     # if there is dayoff
+                self.schoolDayCheck = 3
+            else:                   # no dayoff == match
                 self.schoolDayCheck = 2
-            else:                   # no dayoff == mactch
-                self.schoolDayCheck = 1
         else:
             # define temporary variables
             matchFlag = False
@@ -206,6 +205,7 @@ class Schedule():
                     self.schoolDayCheck = 1
                 else:                           # no dayoff at all
                     self.schoolDayCheck = 0
+
 
     # calculate the schedule route score
     def routeCal(self):
