@@ -121,6 +121,13 @@ class PanelCourse(QMainWindow):
                     crseItem.setFlags(crseItem.flags() | Qt.ItemIsUserCheckable)
                     crseItem.setText(0, "{} - {}".format(z, title[0]))
                     crseItem.setCheckState(0, Qt.Unchecked)
+                    prereqs = self.db.getPrereq(x,z)
+                    tip = ""
+                    for prereq in prereqs:
+                        tip = tip + prereq
+                    if tip == "":
+                        tip = "No prerequisites"
+                    crseItem.setToolTip(0, tip)
 
         self.courseList.sortItems(0, Qt.AscendingOrder)
         self.db.close()
