@@ -15,6 +15,7 @@ class Schedule():
         self.instCheck = None
         self.routeScore = None
         self.setupCheck()
+        self.db.close()
 
     '''
     Priority type:

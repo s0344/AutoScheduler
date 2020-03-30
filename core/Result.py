@@ -206,4 +206,3 @@ class Result():
         index = 0
         for schedule in self.scheduleList:
             print("Schedule ", index, ": ")
-            

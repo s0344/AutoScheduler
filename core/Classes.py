@@ -29,6 +29,7 @@ class Classes():
         self.sec = None
         # use setup function to set up all the properties
         self.setup(crn)
+        self.db.close()
 
     def setup(self, crn):
         data = self.db.getClassData(crn)
