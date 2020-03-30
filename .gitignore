@@ -130,3 +130,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+.idea/.gitignore
+.idea/AutoScheduler.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/rSettings.xml
+.idea/vcs.xml
