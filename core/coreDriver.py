@@ -58,7 +58,7 @@ def coreDriver(data):
     print("> class list length is: ", len(classList))
     print("> course limit is: ", int(courseLimit))
     scheduleList = bruteForceExecute(classList, len(classList), int(courseLimit),mandatoryList)
-    print("> # of resulted schedule: ", len(scheduleList) )
+    print("> # of resulted schedule: ", len(scheduleList))
     print("> printing results")
     count = 1
     for schedule in scheduleList:

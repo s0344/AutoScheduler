@@ -1,25 +1,31 @@
 from database.DB import *
 from core.Course import *
-from core.coreDriver import core
 
 if __name__ == '__main__':
-    '''
+
     csFile = 'cs.csv'
     langFile = 'lang.csv'
     rootsFile = 'roots.csv'
+    mapFile = 'map.csv'
 
     testdb = DB()
     flag = testdb.createDatabase()  # return 1 if database is newly created, 0 if database already created
     testdb.importData(csFile, flag)
     testdb.importData(langFile, flag)
     testdb.importData(rootsFile, flag)
+    testdb.importData(mapFile, flag)
 
     l1 = testdb.getSubject()
     l2 = testdb.getLevel("CMPT")
     l3 = testdb.getCourse("CMPT", "100")
     l4 = testdb.getTitle("CMPT", "101")
     l5 = testdb.getInst("CMPT", "101")
+    map = testdb.getMap()
 
+    print("hello")
+    for row in map:
+        print(row[0],row[1])
+    print("hello")
     print(l1)
     #print(type(l1))
     # print(l1[1][0])
@@ -59,12 +65,14 @@ if __name__ == '__main__':
     print(endtime-starttime)
 
     testdb.close()
+
     '''
 
     c = Course("CMPT","239","1")
     for classes in c.classList:
         classes.printDetailData()
         classes.printSimpleData()
+    '''
     '''
     test = ""
     test1 = "123"

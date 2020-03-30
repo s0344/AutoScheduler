@@ -67,6 +67,10 @@ class DB():
                                                 primary key(crn, days, start, end, location),\
                                                 foreign key(crn) references section(crn) on delete cascade)")
 
+            self.cur.execute("CREATE TABLE IF NOT EXISTS map(\
+                                                building VARCHAR(3),\
+                                                area VARCHAR(1),\
+                                                primary key(building))")
             self.db.commit()
             self.cur.close()
             return 1
@@ -87,43 +91,63 @@ class DB():
             sectionSql = "INSERT IGNORE INTO " \
                          "section (crn, subj, crse, sec, rem, inst, date) VALUES (%s,%s,%s,%s,%s,%s,%s)"
             lessonSql = "INSERT INTO lesson (crn, days, start, end, location) VALUES (%s,%s,%s,%s,%s)"
+            mapSql = "INSERT INTO map(building, area) VALUES (%s,%s)"
 
-            # reading the classes into value and store the data to database through quries
-            with open(fileName) as file:
-                reader = csv.reader(file, delimiter=',')
-                line = 0
-                for row in reader:
-                    if line:
-                        prereq1 = row[0]
-                        prereq2 = row[1]
-                        prereq3 = row[2]
-                        crn = row[3]
-                        subj = row[4]
-                        crse = row[5]
-                        sec = row[6]
-                        cred = row[7]
-                        title = row[8]
-                        days = row[9]
-                        start = row[10]
-                        end = row[11]
-                        rem = row[12]
-                        inst = row[13]
-                        date = row[14]
-                        location = row[15]
+            print(fileName)
+            print(type(fileName))
+            print(fileName == 'map.csv')
 
-                        # calculate level
-                        level = crse[0] + "00"
+            if fileName == 'map.csv':
+                print("map in")
+                # reading the classes into value and store the data to database through quries
+                with open(fileName) as file:
+                    reader = csv.reader(file, delimiter=',')
+                    line = 0
+                    for row in reader:
+                        if line:
+                            building = row[0]
+                            area = row[1]
+                            mapData = (building, area)
+                            self.cur.execute(mapSql, mapData)
+                        line += 1
+                    print(fileName + ' process ended')
+            else:
+                # reading the classes into value and store the data to database through quries
+                with open(fileName) as file:
+                    reader = csv.reader(file, delimiter=',')
+                    line = 0
+                    for row in reader:
+                        if line:
+                            prereq1 = row[0]
+                            prereq2 = row[1]
+                            prereq3 = row[2]
+                            crn = row[3]
+                            subj = row[4]
+                            crse = row[5]
+                            sec = row[6]
+                            cred = row[7]
+                            title = row[8]
+                            days = row[9]
+                            start = row[10]
+                            end = row[11]
+                            rem = row[12]
+                            inst = row[13]
+                            date = row[14]
+                            location = row[15]
 
-                        subjectData = subj
-                        classesData = (prereq1, prereq2, prereq3, subj, crse, level, cred, title)
-                        sectionData = (crn, subj, crse, sec, rem, inst, date)
-                        lessonData = (crn, days, start, end, location)
-                        self.cur.execute(subjectSql, subjectData)
-                        self.cur.execute(classesSql, classesData)
-                        self.cur.execute(sectionSql, sectionData)
-                        self.cur.execute(lessonSql, lessonData)
-                    line += 1
-                print(fileName + ' process ended')
+                            # calculate level
+                            level = crse[0] + "00"
+
+                            subjectData = subj
+                            classesData = (prereq1, prereq2, prereq3, subj, crse, level, cred, title)
+                            sectionData = (crn, subj, crse, sec, rem, inst, date)
+                            lessonData = (crn, days, start, end, location)
+                            self.cur.execute(subjectSql, subjectData)
+                            self.cur.execute(classesSql, classesData)
+                            self.cur.execute(sectionSql, sectionData)
+                            self.cur.execute(lessonSql, lessonData)
+                        line += 1
+                    print(fileName + ' process ended')
 
             self.db.commit()
             self.cur.close()
@@ -179,6 +203,14 @@ class DB():
         self.cur.execute(sql, var)
         result = self.cur.fetchall()
         result = [item[0] for item in result]
+        self.cur.close()
+        return result
+
+    def getMap(self):
+        self.cur = self.db.cursor()
+        sql = "select * from map"
+        self.cur.execute(sql)
+        result = self.cur.fetchall()
         self.cur.close()
         return result
 

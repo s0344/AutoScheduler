@@ -4,6 +4,8 @@ from database.DB import *
 from core.Course import *
 from datetime import datetime
 import copy
+
+
 class Classes():
     def __init__(self, crn):
         # connect to database
@@ -38,8 +40,8 @@ class Classes():
                 self.rem = i[3]
                 self.inst = i[4]
                 self.days = [i[5],]
-                self.start = [i[6],]
-                self.end = [i[7],]
+                self.start = [datetime.strptime(i[6], '%H:%M'),]
+                self.end = [datetime.strptime(i[7], '%H:%M'),]
                 self.classTime = [self.calClassTime(i[6],i[7]),] # list is used in case there are more than one class
                 self.location = [i[8],] # same as previous reason, eg: phy labs
                 self.date = i[9]
@@ -50,8 +52,8 @@ class Classes():
                 count += 1
             else:
                 self.days.append(i[5])
-                self.start.append(i[6])
-                self.end.append(i[7])
+                self.start.append(datetime.strptime(i[6], '%H:%M'))
+                self.end.append(datetime.strptime(i[7], '%H:%M'))
                 self.classTime.append(self.calClassTime(i[6],i[7]))
                 if i[8] not in self.location:
                     self.location.append(i[8])
