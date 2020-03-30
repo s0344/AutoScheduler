@@ -125,12 +125,14 @@ class PanelCourse(QMainWindow):
                     prereqs = self.db.getPrereq(x, z)
                     tip = ""
                     for prereq in prereqs:
+                        if prereq == "":
+                            continue
                         plus = prereq.find("+")
                         if plus != -1:
                             prereq = prereq[:plus] + " or " + prereq[plus + 1:len(prereq)]
                         tip = tip + ", and " + prereq
-                    tip = tip[6: len(tip)]
-                    if tip == "":
+                    tip = "Prereq: " + tip[6: len(tip)]
+                    if tip == "Prereq: ":
                         tip = "No prerequisites"
                     crseItem.setToolTip(0, tip)
 
