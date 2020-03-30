@@ -7,12 +7,11 @@ class Schedule():
         self.db.useDatabase()
         self.classList = copy.deepcopy(classList)
         self.weekList = [[], [], [], [], []]
-        self.inst = None
-        self.classLen = None
-        self.routeRank = None
-        self.score = None
+        self.schoolDay= None
+        self.startCheck = None
+        self.endCheck = None
+        self.routeScore = None  #handled
         self.priority = ['School Day', 'Length of Class', 'Start Time', 'End Time', 'Instructor'] # This is default
-        self.priorityCheck = None
 
     '''
     Priority type:
@@ -28,7 +27,9 @@ class Schedule():
     def setupCheck(self):
 
         # PART 1 - find all the data that is needed
-        # add all the days in to a nested list
+        instList = None  #handled
+        classLenList = None  #handled
+        # week day list to match the class days
         weekDay = ['M', 'T', 'W', 'R', 'F']
 
         # create default value for the priorities
@@ -40,16 +41,31 @@ class Schedule():
 
         # loop through each class to get data
         for classes in self.classList:
-            index = 0 # a index used to access list data
-            for day in classes.days: # days contains a list of lesson days
+
+            # get class length of each classes
+            for classLen in classes.classTime:
+                if classLen not in classLenList:
+                    classLenList.append(classLen)
+
+            # get instructor
+            instList.append(classes.inst)
+
+            index = 0  # a index used to access list data
+            # add all the days in to a nested list
+            for day in classes.days:  # days contains a list of lesson days
                 # start checking each day(mon-fri)
                 for i in range(5):
                     if weekDay[index] in day:
                         self.weekList.append((classes.start[index],classes.end[index]))
                 index += 1 # increment to the index for next lesson
 
-        # route calculation
-        map = self.db.getMap()
+        # PART 2 - check the priority state
+
+
+        # calculate route score
+        self.routeCal()
+
+
 
     # check if the schedule match the user priority
     def setupCheck(self,priority):
@@ -83,14 +99,14 @@ class Schedule():
         # start calculating score
         score = 0
         for i in range(1,len(locationList)):
-            Location = locationList[i]
+            location = locationList[i]
             lastLocation = locationList[i-1]
-            building = Location[0:3]
+            building = location[0:3]
             lastBuilding = lastLocation[0:3]
             area = mapDict[building]
             lastArea = mapDict[lastBuilding]
-            floor = Location[4]
-            lastFloor = Location[4]
+            floor = location[4]
+            lastFloor = location[4]
 
             if building != lastBuilding:
                 if area != lastArea:  # if area changed +100
