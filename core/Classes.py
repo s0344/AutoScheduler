@@ -40,10 +40,10 @@ class Classes():
                 self.crse = i[2]
                 self.rem = i[3]
                 self.inst = i[4]
-                self.days = [i[5],]
+                self.days = [i[5], ]
                 self.start = [datetime.strptime(i[6], '%H:%M'),]
                 self.end = [datetime.strptime(i[7], '%H:%M'),]
-                self.classTime = [self.calClassTime(i[6],i[7]),] # list is used in case there are more than one class
+                self.classTime = [self.calClassTime(datetime.strptime(i[6], '%H:%M'),datetime.strptime(i[7], '%H:%M')),] # list is used in case there are more than one class
                 self.location = [i[8],] # same as previous reason, eg: phy labs
                 self.date = i[9]
                 self.prereq1 = self.checkPrereq(i[10])
@@ -55,16 +55,16 @@ class Classes():
                 self.days.append(i[5])
                 self.start.append(datetime.strptime(i[6], '%H:%M'))
                 self.end.append(datetime.strptime(i[7], '%H:%M'))
-                self.classTime.append(self.calClassTime(i[6],i[7]))
+                self.classTime.append(self.calClassTime(datetime.strptime(i[6], '%H:%M'),datetime.strptime(i[7], '%H:%M')))
                 if i[8] not in self.location:
                     self.location.append(i[8])
 
     # calculate the time diff of the start and end time of a lesson
     # takes string as input and return a datetime object
     def calClassTime(self,start,end):
-        starttime = datetime.strptime(start, '%H:%M')
-        endtime = datetime.strptime(end, '%H:%M')
-        result = endtime - starttime
+        #starttime = datetime.strptime(start, '%H:%M')
+        #endtime = datetime.strptime(end, '%H:%M')
+        result = end - start
         hour = result.seconds//3600
         min = (result.seconds//60) % 60
         return str(hour)+":"+str(min)

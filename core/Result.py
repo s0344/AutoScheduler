@@ -1,26 +1,25 @@
 class Result():
     def __init__(self, scheduleList):
         self.scheduleList = scheduleList
-        self.priority = ['School Day', 'Route Score', 'Length of Class', 'Start Time', 'End Time', 'Instructor']  # This is default
 
     def rank(self, data):
         # update check
         for schedule in self.scheduleList:
-            schedule.updateCheck(self, data)
+            schedule.updateCheck(data)
 
         # make a function list base on priority
         priority = data.getPriority()
         funcList = []
-        for prio in priority:
-            if prio == 'School Day':
+        for eachPrio in priority:
+            if eachPrio == 'School Day':
                 funcList.append(self.schoolDayRank)
-            elif prio == 'Length of Class':
+            elif eachPrio == 'Length of Class':
                 funcList.append(self.classLenRank)
-            elif prio == 'Start Time':
+            elif eachPrio == 'Start Time':
                 funcList.append(self.startTimeRank)
-            elif prio == 'End Time':
+            elif eachPrio == 'End Time':
                 funcList.append(self.endTimeRank)
-            elif prio == 'Instructor':
+            elif eachPrio == 'Instructor':
                 funcList.append(self.instRank)
 
         # call the first function
@@ -204,5 +203,19 @@ class Result():
 
     def printResult(self):
         index = 0
+        weekDay = ['M', 'T', 'W', 'R', 'F']
         for schedule in self.scheduleList:
             print("Schedule ", index, ": ")
+            print("Time table: ")
+            for i in range(5):
+                print(weekDay[i], end= ": ")
+                for classtime in schedule.weekList[i]:
+                    print("(" , classtime[0].time() , classtime[0].time() , "), ")
+                print()
+            print("School Day Check: ", schedule.schoolDayCheck)
+            print("Start Time Check: ", schedule.startCheck)
+            print("End Time Check: ", schedule.endCheck)
+            print("Class Length Check: ", schedule.classLenCheck)
+            print("Instructor Check: ", schedule.instCheck)
+            print("Route Score: ", schedule.routeScore)
+            print("=============================================================================")

@@ -1,5 +1,6 @@
 from core.Course import *
 from core.bruteForce import bruteForceExecute
+from core.Result import *
 
 def coreDriver(data):
 
@@ -66,6 +67,17 @@ def coreDriver(data):
         schedule.printData()
         count += 1
         print()
+
+    print("> Adding schedule list to result...", end="")
+    result = Result(scheduleList)
+    print("done")
+
+    print("> ranking Result...", end="")
+    result.rank(data)
+    print("done")
+
+    print("> printing results")
+    result.printResult()
 
 
        # preference rating
