@@ -69,7 +69,7 @@ class Result():
             0: 1,
         }
         for schedule in scheduleList:
-            i = switcher.get(schedule.schoolDayCheck)
+            i = switcher.get(schedule.classLenCheck)
             list[i].append(schedule)
 
         # check first if this is the leaf node (lowest level), if yes: rank route score and return
@@ -101,7 +101,7 @@ class Result():
             0: 5,
         }
         for schedule in scheduleList:
-            i = switcher.get(schedule.schoolDayCheck)
+            i = switcher.get(schedule.startCheck)
             list[i].append(schedule)
 
         # check first if this is the leaf node (lowest level), if yes: rank route score and return
@@ -133,7 +133,7 @@ class Result():
             0: 5,
         }
         for schedule in scheduleList:
-            i = switcher.get(schedule.schoolDayCheck)
+            i = switcher.get(schedule.endCheck)
             list[i].append(schedule)
 
         # check first if this is the leaf node (lowest level), if yes: rank route score and return
@@ -162,7 +162,7 @@ class Result():
             2: 2,
         }
         for schedule in scheduleList:
-            i = switcher.get(schedule.schoolDayCheck,3)
+            i = switcher.get(schedule.instCheck,3)
             list[i].append(schedule)
 
         # check first if this is the leaf node (lowest level), if yes: rank route score and return
@@ -183,20 +183,20 @@ class Result():
     # always run at the end of one node
     def routeRank(self, sublist):
         # create list of tuples to sort
-        sort = {}
+        sort = []
         # create new list to store the sorted list
         result = []
 
         # put data into the tuple list for sorting
         length = len(sublist)
         for i in range(length):
-            sort[sublist[i]] = sublist[i].routeScore
-
+            #sort[sublist[i]] = sublist[i].routeScore
+            sort.append((sublist[i],sublist[i].routeScore))
         # perform sorting
-        sortedList = sorted(sort.items, key=lambda x: x[1])
+        sort.sort(key=lambda x: x[1])
 
         # put the sorted dictionary to result
-        for tuple in sortedList:
+        for tuple in sort:
             result.append(tuple[0])
 
         return result
@@ -210,7 +210,7 @@ class Result():
             for i in range(5):
                 print(weekDay[i], end= ": ")
                 for classtime in schedule.weekList[i]:
-                    print("(" , classtime[0].time() , classtime[0].time() , "), ")
+                    print("(" , classtime[0].time() , classtime[1].time() , "), ")
                 print()
             print("School Day Check: ", schedule.schoolDayCheck)
             print("Start Time Check: ", schedule.startCheck)
@@ -219,3 +219,4 @@ class Result():
             print("Instructor Check: ", schedule.instCheck)
             print("Route Score: ", schedule.routeScore)
             print("=============================================================================")
+            index += 1

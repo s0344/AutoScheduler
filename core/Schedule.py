@@ -15,7 +15,6 @@ class Schedule():
         self.instCheck = None
         self.routeScore = None
         self.setupCheck()
-        #self.db.close()
 
     '''
     Priority type:
@@ -68,6 +67,10 @@ class Schedule():
                         self.weekList[i].append((classes.start[index],classes.end[index]))
                 index += 1  # increment to the index for next lesson
 
+        for day in self.weekList:
+            day.sort(key=lambda x:x[0])
+
+
         # PART 2 - check the priority state
         # calculate day off check, start check, end check, and classLength check.
         self.timeCheck(schoolDayPref, startPref, endPref, classLenList, classLenPref)
@@ -101,7 +104,7 @@ class Schedule():
             # get instructor
             if classes.inst not in instList:
                 instList.append(classes.inst)
-
+            '''
             index = 0  # a index used to access list data
             # add all the days in to a nested list
             for day in classes.days:  # days contains a list of lesson days
@@ -110,6 +113,7 @@ class Schedule():
                     if weekDay[i] in day:
                         self.weekList[i].append((classes.start[index], classes.end[index]))
                 index += 1  # increment to the index for next lesson
+            '''
 
         # PART 2 - check the priority state
         # calculate day off check, start check, end check, and classLength check.
@@ -190,10 +194,11 @@ class Schedule():
             matchIndex = 0
 
             # check if there is a match
-            for i in range(5):
-                if not schoolDayPref[i] and i == dayOffList[matchIndex]:
-                    matchCount += 1
-                    matchIndex += 1
+            for dayoff in dayOffList:
+                for i in range(5):
+                    if not schoolDayPref[i] and i == dayoff:
+                        matchCount += 1
+                        matchIndex += 1
             if matchCount == matchNum:
                 matchFlag = True
 
@@ -204,7 +209,7 @@ class Schedule():
                 else:                           # if match but no extra day off
                     self.schoolDayCheck = 2
             else:
-                if len(dayOffList):             # if not match but have day off
+                if len(dayOffList):             # if not all match but have day off
                     self.schoolDayCheck = 1
                 else:                           # no dayoff at all
                     self.schoolDayCheck = 0
