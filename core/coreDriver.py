@@ -37,13 +37,15 @@ def coreDriver(data):
     print("> Adding data to course list...  ", end="")
     for subjLv in course:
         crseList = subjLv.crseList
-        lvLimitList.append((subjLv.subj, subjLv.lv, subjLv.lvLimit))
+        lvLimitList.append((subjLv.subj + subjLv.lv[0], subjLv.lvLimit))
         for crse in crseList:
             if int(crse.mandatory):
                 mandatoryList.append((subjLv.subj, crse.crseNum, crse.mandatory))
             courseList.append(Course(subjLv.subj, crse.crseNum))
 
     print("done")
+
+    lvLimitList = dict(lvLimitList)
 
     print("> printing mandatory class")
     for mandClass in mandatoryList:
@@ -58,7 +60,7 @@ def coreDriver(data):
     # use bruteforce function
     print("> class list length is: ", len(classList))
     print("> course limit is: ", int(courseLimit))
-    scheduleList = bruteForceExecute(classList, len(classList), int(courseLimit),mandatoryList)
+    scheduleList = bruteForceExecute(classList, len(classList), int(courseLimit),mandatoryList, lvLimitList)
     print("> # of resulted schedule: ", len(scheduleList))
     print("> printing results")
     count = 1
@@ -78,8 +80,5 @@ def coreDriver(data):
 
     print("> printing results")
     result.printResult()
-
-
-       # preference rating
 
 

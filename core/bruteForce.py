@@ -4,13 +4,13 @@ from core.Schedule import Schedule
 # In order to generate all possible course
 # we chosen a Brute Force method as our Resource Allocation Algorithm
 # It will return a schedule list
-def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList):
+def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLimitList):
     # Temporary classListay to store combination
     temp = [0] * courseLimit;
     scheduleList = []
     # bruteForce function will store the result in the scheduleList
     print("> Starting brute force algorithm to find possible schedules...  ", end="")
-    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList);
+    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList);
     print("done")
     return scheduleList
 
@@ -22,10 +22,10 @@ def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList):
 # courseLimit: Size of a combination
 # schedulist: such that each result could append to the schedule list
 # mandatoryList: use to check if all the mandatory class in schedule
-def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, mandatoryList):
+def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, mandatoryList, lvLimitList):
     # When the result is ready, check list and append to schedule list
     if (index == courseLimit):
-        if checkClasses(temp, mandatoryList):
+        if checkClasses(temp, mandatoryList,lvLimitList):
             scheduleList.append(Schedule(temp))
         return;
 
@@ -33,7 +33,7 @@ def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, ma
     while (i <= end and end - i + 1 >= courseLimit - index):
         # print("while loop in")
         temp[index] = classList[i];
-        bruteForce(classList, temp, i + 1, end, index + 1, courseLimit, scheduleList, mandatoryList);
+        bruteForce(classList, temp, i + 1, end, index + 1, courseLimit, scheduleList, mandatoryList, lvLimitList);
         i += 1;
 
 
@@ -41,8 +41,8 @@ def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, ma
 # Conflicts: same course, day time conflict, missing mandatory course
 # True: there is NO conflict  False: there is a conflict
 
-def checkClasses(temp, mandatoryList):
-    # print("Started checking course conflict")
+def checkClasses(temp, mandatoryList, lvLimitList):
+
     # check course conflict
     courseSet = set()
     for classes in temp:
@@ -83,5 +83,20 @@ def checkClasses(temp, mandatoryList):
                 if dayTimeConflict(weekDay[i], weekList[i], day, classes.start[j], classes.end[j]):
                     return False
             j += 1
+
+    # check level limit
+    level = {}
+    for classes in temp:
+        levelstr = classes.subj + classes.crse[0]
+        if not lvLimitList[levelstr].isnumeric():   # check if it should be ignored
+            continue
+        else:  # when it shouldn't be ignored
+            if levelstr in level.keys():  # check if the key exist, false: create new dict, true: dict +1
+                if int(lvLimitList[levelstr]) > level[levelstr]:  # check if the count reach the limit yet
+                    level[levelstr] += 1
+                else:
+                    return False
+            else:
+                level.update({levelstr: 1})
 
     return True
