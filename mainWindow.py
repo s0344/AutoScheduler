@@ -130,8 +130,8 @@ class MainWindow(QMainWindow):
         self.pPreference.next.clicked.connect(lambda: self.click_next())
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Priority
-        self.pPriority.previous.clicked.connect(lambda: self.click_next())
         self.pPriority.submit.clicked.connect(lambda: self.click_submit())
+        self.pPriority.previous.clicked.connect(lambda: self.showPreviousPanel())
 
 
     """
@@ -161,8 +161,6 @@ class MainWindow(QMainWindow):
             self.guiData.setSchoolDay()
             self.guiData.setTime()
             self.guiData.setClassLen()
-        elif currentIndex == 3:
-            self.guiData.setPriority()
 
         self.showNextPanel()
 
@@ -179,5 +177,6 @@ class MainWindow(QMainWindow):
         filtedInst = self.guiData.getNotSelectedInst()
         print(filtedInst)
         '''
+        self.guiData.setPriority()
         coreDriver(self.guiData)
         self.showNextPanel()
