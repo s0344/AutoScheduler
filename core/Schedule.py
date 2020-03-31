@@ -15,7 +15,7 @@ class Schedule():
         self.instCheck = None
         self.routeScore = None
         self.setupCheck()
-        self.db.close()
+        #self.db.close()
 
     '''
     Priority type:
@@ -32,8 +32,8 @@ class Schedule():
     def setupCheck(self):
 
         # PART 1 - find all the data that is needed
-        instList = None
-        classLenList = None
+        instList = []
+        classLenList = []
         # week day list to match the class days
         weekDay = ['M', 'T', 'W', 'R', 'F']
 
@@ -42,10 +42,10 @@ class Schedule():
         instPref = []
         startPref = []
         for i in range(5):
-            startPref.append(datetime.datetime("8:00","%H:%M"))
+            startPref.append(datetime.strptime("8:00","%H:%M"))
         endPref = []
         for i in range(5):
-            endPref.append(datetime.datetime("21:30","%H:%M"))
+            endPref.append(datetime.strptime("21:30","%H:%M"))
         classLenPref = [1, 1, 1]
 
         # loop through each class to get data
@@ -56,30 +56,31 @@ class Schedule():
                     classLenList.append(classLen)
 
             # get instructor
-            instList.append(classes.inst)
+            if classes.inst not in instList:
+                instList.append(classes.inst)
 
             index = 0  # a index used to access list data
             # add all the days in to a nested list
             for day in classes.days:  # days contains a list of lesson days
                 # start checking each day(mon-fri)
                 for i in range(5):
-                    if weekDay[index] in day:
-                        self.weekList.append((classes.start[index],classes.end[index]))
+                    if weekDay[i] in day:
+                        self.weekList[i].append((classes.start[index],classes.end[index]))
                 index += 1  # increment to the index for next lesson
 
         # PART 2 - check the priority state
         # calculate day off check, start check, end check, and classLength check.
-        self.timeCheck(self, schoolDayPref, startPref, endPref, classLenList, classLenPref)
+        self.timeCheck(schoolDayPref, startPref, endPref, classLenList, classLenPref)
         # calculate route score
-        self.routeCal(self)
+        self.routeCal()
         # calculate instructor check
-        self.instCheck(self, instList, instPref)
+        self.instructorCheck(instList, instPref)
 
     # check if the schedule match the user priority
     def updateCheck(self,data):
         # PART 1 - find all the data that is needed
-        instList = None
-        classLenList = None
+        instList = []
+        classLenList = []
         # week day list to match the class days
         weekDay = ['M', 'T', 'W', 'R', 'F']
 
@@ -98,24 +99,25 @@ class Schedule():
                     classLenList.append(classLen)
 
             # get instructor
-            instList.append(classes.inst)
+            if classes.inst not in instList:
+                instList.append(classes.inst)
 
             index = 0  # a index used to access list data
             # add all the days in to a nested list
             for day in classes.days:  # days contains a list of lesson days
                 # start checking each day(mon-fri)
                 for i in range(5):
-                    if weekDay[index] in day:
-                        self.weekList.append((classes.start[index], classes.end[index]))
+                    if weekDay[i] in day:
+                        self.weekList[i].append((classes.start[index], classes.end[index]))
                 index += 1  # increment to the index for next lesson
 
         # PART 2 - check the priority state
         # calculate day off check, start check, end check, and classLength check.
-        self.timeCheck(self, schoolDayPref, startPref, endPref, classLenList, classLenPref)
+        self.timeCheck(schoolDayPref, startPref, endPref, classLenList, classLenPref)
         # calculate route score
-        self.routeCal(self)
+        self.routeCal()
         # calculate instructor check
-        self.instCheck(self, instList, instPref)
+        self.instructorCheck(instList, instPref)
 
     # print the crn(s) of the schedule
     def printData(self):
@@ -159,7 +161,7 @@ class Schedule():
                 startCount += 1
 
             # check day end: if class end at or before end time +1
-            if day[len(day)][1] <= endPref[index]:
+            if day[len(day)-1][1] <= endPref[index]:
                 endCount += 1
 
             index += 1
@@ -207,46 +209,53 @@ class Schedule():
                 else:                           # no dayoff at all
                     self.schoolDayCheck = 0
 
-
     # calculate the schedule route score
     def routeCal(self):
         # route calculation
         map = self.db.getMap()
-        locationList = []
+        locationList = [[], [], [], [], []]
+        weekDay = ['M', 'T', 'W', 'R', 'F']
         # create a dictionary of map
         mapDict = {row[0]: row[1] for row in map}
 
         # loop through each class and append location to list
         for classes in self.classList:
-            locationList.append(classes.location)
+            index = 0  # a index used to access list data
+            for day in classes.days:  # days contains a list of lesson days
+                # start checking each day(mon-fri)
+                for i in range(5):
+                    if weekDay[i] in day:
+                        locationList[i].append(classes.location[index])
+                index += 1  # increment to the index for next lesson
 
         # start calculating score
-        score = 0
-        for i in range(1,len(locationList)):
-            location = locationList[i]
-            lastLocation = locationList[i-1]
-            building = location[0:3]
-            lastBuilding = lastLocation[0:3]
-            area = mapDict[building]
-            lastArea = mapDict[lastBuilding]
-            floor = location[4]
-            lastFloor = location[4]
+        dayScore = [0,0,0,0,0]
+        for day in range(5):
+            for i in range(1,len(locationList[day])):
+                location = locationList[day][i]
+                lastLocation = locationList[day][i-1]
+                building = location[0:3]
+                lastBuilding = lastLocation[0:3]
+                area = mapDict[building]
+                lastArea = mapDict[lastBuilding]
+                floor = location[4]
+                lastFloor = lastLocation[4]
 
-            if building != lastBuilding:
-                if area != lastArea:  # if area changed +100
-                    score += 100
-                else:   # if building change in same area +10
-                    score += 10
+                if building != lastBuilding:
+                    if area != lastArea:  # if area changed +100
+                        dayScore[day] += 100
+                    else:   # if building change in same area +10
+                        dayScore[day] += 10
+                        continue
+                elif floor != lastFloor:  # if building didn't change but floor change +1
+                    dayScore[day] += 1
                     continue
-            elif floor != lastFloor:  # if building didn't change but floor change +1
-                score += 1
-                continue
 
         # add score after calculation
-        self.routeScore = score
+        self.routeScore = sum(dayScore)/len(dayScore)
 
     # check the instructor list
-    def instCheck(self, instList, instPref):
+    def instructorCheck(self, instList, instPref):
         count = 0
         for inst in instPref:
             if inst in instList:

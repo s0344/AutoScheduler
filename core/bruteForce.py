@@ -69,8 +69,8 @@ def checkClasses(temp, mandatoryList):
             # return false, no then add to the list
             for timeRange in dayList:
                 # if there are conflicts:
-                if start > timeRange[0] and start < timeRange[1] \
-                        or end > timeRange[0] and end < timeRange[1]:
+                if start >= timeRange[0] and start <= timeRange[1] \
+                        or end >= timeRange[0] and end <= timeRange[1]:
                     return True  # return true for the check process outside to end
             # after check no conflict in that day add to list
             dayList.append((start, end))
