@@ -47,7 +47,7 @@ class UIdata():
         self.__courseLimit = int(self.__gui.pCourse.limit.currentText())
 
     def setPriority(self):
-        self.__priority = self.__gui.pPriority.priorityList.nodes
+        self.__priority = self.__gui.pPriority.priorityList.defaultPriority
 
     def setSchoolDay(self):
         self.__schoolDay = [self.__gui.pPreference.check1.checkState(),
@@ -191,9 +191,7 @@ class UIdata():
 
         # start time and end time
         for i in range(5):
-            st = datetime.strptime(self.__st[i], "%H:%M")
-            et = datetime.strptime(self.__et[i], "%H:%M")
-            if st > et:
+            if self.__st[i] > self.__et[i]:
                 message.append("Start Time later than End Time")
                 break
 
@@ -204,7 +202,7 @@ class UIdata():
         # school day
         if all(v == 0 for v in self.__schoolDay):
             message.append("No School Day Selected")
-        #
+
         # course = self.__courses
         # sum_Man = 0     # sum of user-selected mandatory
         # for subjLv in course:
