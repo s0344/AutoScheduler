@@ -171,12 +171,6 @@ class MainWindow(QMainWindow):
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() - 1)
 
     def click_submit(self):
-        # print(self.guiData.dataValidation())
-        '''
-        print("OK")
-        filtedInst = self.guiData.getNotSelectedInst()
-        print(filtedInst)
-        '''
         self.guiData.setPriority()
         coreDriver(self.guiData)
         self.showNextPanel()
