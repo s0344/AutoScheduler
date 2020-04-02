@@ -143,6 +143,8 @@ class PanelCourse(QMainWindow):
         self.selectedList.setColumnWidth(0, 210)
         self.selectedList.setColumnWidth(1, 90)
         self.selectedList.setColumnWidth(2, 80)
+        header = self.selectedList.headerItem()
+        header.setToolTip(2, "Number of Course needs to take for the level")
 
     def addButtonEvent(self):
         root = self.courseList.invisibleRootItem()
@@ -171,7 +173,7 @@ class PanelCourse(QMainWindow):
             tarLv.setText(0, searchTerm)
             # combo box for each level item
             comboBox = QComboBox()
-            num = [str(n+1) for n in range(9)]
+            num = [str(n+1) for n in range(5)]
             num.append("Ignore")
             comboBox.addItems(num)
             comboBox.setCurrentIndex(len(num) -1 )
