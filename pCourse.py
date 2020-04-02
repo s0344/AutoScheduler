@@ -11,7 +11,6 @@ class PanelCourse(QMainWindow):
     def __init__(self):
         super(PanelCourse, self).__init__()
         self.widget = QWidget(self)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 850, 650))
         self.setCentralWidget(self.widget)
         self.layout = QVBoxLayout(self.widget)  # Overall vertical layout
 
@@ -96,8 +95,7 @@ class PanelCourse(QMainWindow):
     """
     def initCourseList(self):
         self.courseList.setHeaderLabel("Course Available")
-        # show the horizontal scrollbar when needed
-        self.courseList.expanded.connect(lambda: self.courseList.setColumnWidth(0, self.courseList.width()))
+        self.courseList.expanded.connect(lambda: self.courseList.setColumnWidth(0, (self.courseList.width() + 200)))
 
         # connect to database
         self.db = DB()

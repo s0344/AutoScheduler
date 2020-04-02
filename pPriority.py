@@ -8,7 +8,6 @@ class PanelPriority(QMainWindow):
     def __init__(self):
         super(PanelPriority, self).__init__()
         self.widget = QWidget(self)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 850, 650))
         self.setCentralWidget(self.widget)
         self.layout = QVBoxLayout(self.widget)  # Overall vertical layout
         self.layout.setSpacing(15)

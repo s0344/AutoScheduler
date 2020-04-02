@@ -9,9 +9,9 @@ class PanelPreference(QMainWindow):
     def __init__(self):
         super(PanelPreference, self).__init__()
         self.widget = QWidget(self)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 850, 650))
         self.setCentralWidget(self.widget)
         self.layout = QVBoxLayout(self.widget)  # Overall vertical layout
+
         self.layout.setSpacing(15)
 
         # Font
@@ -75,6 +75,7 @@ class PanelPreference(QMainWindow):
         """
         # Grid Layout
         self.gl = QGridLayout(self.widget)
+        self.gl.setSpacing(30)
         self.gl.addWidget(self.label1, 0, 0, 1, 1)
         self.gl.addWidget(self.check1, 1, 0, 1, 1)
         self.gl.addWidget(self.check2, 2, 0, 1, 1)
@@ -101,7 +102,7 @@ class PanelPreference(QMainWindow):
         self.hl1.addWidget(self.check180)
         # Horizontal layout 2
         self.hl2 = QHBoxLayout(self.widget)
-        self.hl2.addItem(self.spacer)
+        self.hl2.addSpacerItem(self.spacer)
         self.hl2.addWidget(self.previous)
         self.hl2.addWidget(self.next)
         # Overall vertical layout
@@ -134,6 +135,9 @@ class PanelPreference(QMainWindow):
         checkBox = QCheckBox(self.widget)
         checkBox.setText(text)
         checkBox.setChecked(default)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        checkBox.setSizePolicy(sizePolicy)
+        checkBox.setMaximumHeight(100)
         return checkBox
 
     # return a comboBox with default value

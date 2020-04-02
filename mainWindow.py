@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         """
         Draw the main window
         """
-        self.setGeometry(200, 200, 1000, 650)
+        self.setGeometry(200, 200, 1200, 750)
         self.setWindowTitle("Auto Course Scheduler")
         self.setWindowIcon(QtGui.QIcon('pictures/prgmIcon.png'))
         self.centralWidget = QWidget(self)
