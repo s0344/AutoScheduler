@@ -2,6 +2,7 @@ from core.Course import *
 from core.bruteForce import bruteForceExecute
 from core.Result import *
 
+# this is the driver code for the core, takes UIdata as input, returns a result object
 def coreDriver(data):
 
     # define variables
