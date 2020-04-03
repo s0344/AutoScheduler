@@ -10,7 +10,7 @@ def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLim
     scheduleList = []
     # bruteForce function will store the result in the scheduleList
     print("> Starting brute force algorithm to find possible schedules...  ", end="")
-    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList);
+    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList, True);
     print("done")
     return scheduleList
 
@@ -22,19 +22,22 @@ def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLim
 # courseLimit: Size of a combination
 # schedulist: such that each result could append to the schedule list
 # mandatoryList: use to check if all the mandatory class in schedule
-def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, mandatoryList, lvLimitList):
+def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, mandatoryList, lvLimitList, flag):
     # When the result is ready, check list and append to schedule list
     if (index == courseLimit):
         if checkClasses(temp, mandatoryList,lvLimitList):
             scheduleList.append(Schedule(temp))
-        return;
+        return
 
-    i = start;
+    i = start
     while (i <= end and end - i + 1 >= courseLimit - index):
         # print("while loop in")
-        temp[index] = classList[i];
-        bruteForce(classList, temp, i + 1, end, index + 1, courseLimit, scheduleList, mandatoryList, lvLimitList);
-        i += 1;
+        temp[index] = classList[i]
+        bruteForce(classList, temp, i + 1, end, index + 1, courseLimit, scheduleList, mandatoryList, lvLimitList, False)
+        if flag:
+            x = ((i+1)/len(classList))*100
+            print("progress ", round(x, 2), "%")
+        i += 1
 
 
 # This function check through the previous class to see if there are any conflicts

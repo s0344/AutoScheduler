@@ -13,7 +13,6 @@ class Course():
 
     def createClassList(self, subj, crse):
         data = self.db.getLessonCount(subj, crse)
-        print(data)
         list = []
         for i in data:
             tempClass = Classes(i[0])
