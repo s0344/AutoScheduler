@@ -170,7 +170,7 @@ class MainWindow(QMainWindow):
             self.info = self.guiData.dataValidation_Info()
             if len(self.info) != 0:
                 self.dialog(self.info, 1)
-            coreDriver(self.guiData)
+            self.result = coreDriver(self.guiData)
             self.showNextPanel()
         else:
             self.dialog(self.errmsg, 0)
