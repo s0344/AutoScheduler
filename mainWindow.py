@@ -127,8 +127,6 @@ class MainWindow(QMainWindow):
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
         self.pResult.change.clicked.connect(lambda: self.priorityChange())
 
-
-
     """
     Member functions
     """
@@ -207,7 +205,6 @@ class MainWindow(QMainWindow):
 
     def priorityChange(self):
         self.guiData.setPriority()
-        print(self.guiData.getPriority())
-        # self.result.rank(self.guiData)
+        self.result.rank(self.guiData)
 
 
