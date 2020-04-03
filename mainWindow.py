@@ -177,7 +177,8 @@ class MainWindow(QMainWindow):
         self.errmsg = self.guiData.dataValidation_Error()  # Error message of user input
         if len(self.errmsg) == 0:
             self.info = self.guiData.dataValidation_Info()
-            self.dialog(self.info, 1)
+            if len(self.info) != 0:
+                self.dialog(self.info, 1)
             coreDriver(self.guiData)
             self.showNextPanel()
         else:
