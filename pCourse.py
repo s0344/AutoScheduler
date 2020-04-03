@@ -25,15 +25,15 @@ class PanelCourse(QMainWindow):
         """
         # Label
         self.label = QLabel("Number of course going to take: ", self.widget)
+        fontB = QtGui.QFont()
+        fontB.setFamily("Arial")
+        fontB.setPointSize(10)
+        fontB.setBold(True)
+        self.label.setFont(fontB)
         # Combo Box
         self.limit = QComboBox(self.widget)
         self.limit.addItems([str(n + 1) for n in range(10)])
         self.limit.setCurrentIndex(4)
-        # Search Bar
-        self.searchBar = QLineEdit(self.widget)
-        self.searchBar.setClearButtonEnabled(True)
-        # Search Button
-        self.search = QPushButton("Search", self.widget)
         # Spacer
         self.spacer1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.spacer2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -55,8 +55,7 @@ class PanelCourse(QMainWindow):
         """
         # Horizontal layout 1
         self.hl1 = QHBoxLayout(self.widget)
-        self.hl1.addWidget(self.searchBar)
-        self.hl1.addWidget(self.search)
+        self.hl1.setContentsMargins(0, 15, 0, 15)
         self.hl1.addItem(self.spacer1)
         self.hl1.addWidget(self.label)
         self.hl1.addWidget(self.limit)
