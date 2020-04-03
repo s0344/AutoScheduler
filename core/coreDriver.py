@@ -14,23 +14,6 @@ def coreDriver(data):
     # preference variables
     lvLimitList = []
     courseLimit = data.getCourseLimit()
-    instList = []
-    priority = data.getPriority()
-    schoolDay = data.getSchoolDay()
-    dayStart = []
-    dayEnd = []
-    classLen = data.getClassLen()
-    print("done")
-
-    # convert day start and end from string to timedelta object
-    print("> preference start time convert...  ", end="")
-    for time in data.getStartTime():
-        dayStart.append(time)
-    print("done")
-
-    print("> preference end time convert...  ", end="")
-    for time in data.getEndTime():
-        dayEnd.append(time)
     print("done")
 
     # adding data to a course list
@@ -55,6 +38,13 @@ def coreDriver(data):
     print("> creating class list...  ", end="")
     for course in courseList:
         classList += course.classList
+    print("done")
+
+    # if class time is TBA, don't take it into account
+    print("> Popping classes with TBA time...  ", end="")
+    for classes in classList:
+        if classes.start == "TBA":
+            classList.pop(classes)
     print("done")
 
     # use bruteforce function

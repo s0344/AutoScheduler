@@ -43,11 +43,6 @@ def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, ma
 
 def checkClasses(temp, mandatoryList, lvLimitList):
 
-    # check TBA class
-    for classes in temp:
-        if classes.inst == "TBA":
-            return False
-
     # check course conflict
     courseSet = set()
     for classes in temp:
