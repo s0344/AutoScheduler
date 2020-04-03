@@ -4,7 +4,6 @@ from datetime import datetime
 
 class Schedule():
     def __init__(self, classList):
-        self.db = DB()
         self.classList = copy.deepcopy(classList)
         self.weekList = [[], [], [], [], []]
         self.schoolDayCheck = None
@@ -29,6 +28,7 @@ class Schedule():
 
     # check if the schedule match the default priority
     def setupCheck(self):
+        self.db = DB()
         self.db.useDatabase()
         # PART 1 - find all the data that is needed
         instList = []
@@ -82,7 +82,8 @@ class Schedule():
         self.db.close()
 
     # check if the schedule match the user priority
-    def updateCheck(self,data):
+    def updateCheck(self, data):
+        self.db = DB()
         self.db.useDatabase()
         # PART 1 - find all the data that is needed
         instList = []
@@ -244,6 +245,12 @@ class Schedule():
             for i in range(1,len(locationList[day])):
                 location = locationList[day][i]
                 lastLocation = locationList[day][i-1]
+
+                # if location is TBA, assume the area is going to change
+                if location == "TBA" or lastLocation == "TBA":
+                    dayScore[day] += 100
+                    continue
+
                 building = location[0:3]
                 lastBuilding = lastLocation[0:3]
                 area = mapDict[building]

@@ -65,4 +65,6 @@ def coreDriver(data):
     print("> printing results")
     result.printResult()
 
+    return result
+
 
