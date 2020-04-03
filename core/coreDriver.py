@@ -2,6 +2,7 @@ from core.Course import *
 from core.bruteForce import bruteForceExecute
 from core.Result import *
 
+# this is the driver code for the core, takes UIdata as input, returns a result object
 def coreDriver(data):
 
     # define variables
@@ -38,13 +39,6 @@ def coreDriver(data):
     print("> creating class list...  ", end="")
     for course in courseList:
         classList += course.classList
-    print("done")
-
-    # if class time is TBA, don't take it into account
-    print("> Popping classes with TBA time...  ", end="")
-    for classes in classList:
-        if classes.start == "TBA":
-            classList.pop(classes)
     print("done")
 
     # use bruteforce function

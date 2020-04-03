@@ -5,7 +5,6 @@ from datetime import datetime
 class Schedule():
     def __init__(self, classList):
         self.db = DB()
-        self.db.useDatabase()
         self.classList = copy.deepcopy(classList)
         self.weekList = [[], [], [], [], []]
         self.schoolDayCheck = None
@@ -15,6 +14,7 @@ class Schedule():
         self.instCheck = None
         self.routeScore = None
         self.setupCheck()
+
 
     '''
     Priority type:
@@ -29,7 +29,7 @@ class Schedule():
 
     # check if the schedule match the default priority
     def setupCheck(self):
-
+        self.db.useDatabase()
         # PART 1 - find all the data that is needed
         instList = []
         classLenList = []
@@ -79,8 +79,11 @@ class Schedule():
         # calculate instructor check
         self.instructorCheck(instList, instPref)
 
+        self.db.close()
+
     # check if the schedule match the user priority
     def updateCheck(self,data):
+        self.db.useDatabase()
         # PART 1 - find all the data that is needed
         instList = []
         classLenList = []
@@ -122,6 +125,8 @@ class Schedule():
         self.routeCal()
         # calculate instructor check
         self.instructorCheck(instList, instPref)
+
+        self.db.close()
 
     # print the crn(s) of the schedule
     def printData(self):
