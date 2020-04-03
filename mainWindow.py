@@ -15,6 +15,7 @@ class MainWindow(QMainWindow):
         self.guiData = None
         self.errmsg = None
         self.info = None
+        self.result = None
         """
         Draw the main window
         """
@@ -124,6 +125,7 @@ class MainWindow(QMainWindow):
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Result
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
+        self.pResult.change.clicked.connect(lambda: self.priorityChange())
 
 
 
@@ -162,6 +164,7 @@ class MainWindow(QMainWindow):
         self.guiData.setTime()
         self.guiData.setClassLen()
         self.guiData.setPriority()
+        print(self.guiData.getPriority())
         self.errmsg = self.guiData.dataValidation_Error()  # Error message of user input
         if len(self.errmsg) == 0:
             self.info = self.guiData.dataValidation_Info()
@@ -201,5 +204,10 @@ class MainWindow(QMainWindow):
         layout.addLayout(hl)
 
         window.exec()
+
+    def priorityChange(self):
+        self.guiData.setPriority()
+        print(self.guiData.getPriority())
+        # self.result.rank(self.guiData)
 
 
