@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import *
 from pCourse import PanelCourse
 from pInstructor import PanelInstructor
 from pPreference import PanelPreference
-from pPriority import PanelPriority
 from pResult import PanelResult
 from UIdata import *
 from core.coreDriver import coreDriver
@@ -63,15 +62,10 @@ class MainWindow(QMainWindow):
         self.lb2.setSizePolicy(self.leftSizePolicy)
         self.lb2.setMinimumHeight(self.leftMinHeight)
 
-        self.lb3 = QLabel("Priority", self.leftWidget)
+        self.lb3 = QLabel("Result", self.leftWidget)
         self.lb3.setAlignment(Qt.AlignCenter)
         self.lb3.setSizePolicy(self.leftSizePolicy)
         self.lb3.setMinimumHeight(self.leftMinHeight)
-
-        self.lb4 = QLabel("Result", self.leftWidget)
-        self.lb4.setAlignment(Qt.AlignCenter)
-        self.lb4.setSizePolicy(self.leftSizePolicy)
-        self.lb4.setMinimumHeight(self.leftMinHeight)
         # Spacer
         self.vSpacer1 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
         self.vSpacer2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -85,7 +79,6 @@ class MainWindow(QMainWindow):
         self.pCourse = PanelCourse()
         self.pInstructor = PanelInstructor()
         self.pPreference = PanelPreference()
-        self.pPriority = PanelPriority()
         self.pResult = PanelResult()
 
 
@@ -102,14 +95,12 @@ class MainWindow(QMainWindow):
         self.leftLayout.addWidget(self.lb1)
         self.leftLayout.addWidget(self.lb2)
         self.leftLayout.addWidget(self.lb3)
-        self.leftLayout.addWidget(self.lb4)
         self.leftLayout.addSpacerItem(self.vSpacer2)
         # Add panels to the stacked layout
         self.rightLayout = QStackedLayout(self.rightWidget)  # Right column using stacked layout
         self.rightLayout.addWidget(self.pCourse)
         self.rightLayout.addWidget(self.pInstructor)
         self.rightLayout.addWidget(self.pPreference)
-        self.rightLayout.addWidget(self.pPriority)
         self.rightLayout.addWidget(self.pResult)
         # Overall Layout
         self.centralLayout.addWidget(self.leftWidget)
@@ -129,11 +120,11 @@ class MainWindow(QMainWindow):
         self.pInstructor.next.clicked.connect(lambda: self.click_next())
         self.pInstructor.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Preference
-        self.pPreference.next.clicked.connect(lambda: self.click_next())
+        self.pPreference.submit.clicked.connect(lambda: self.click_submit())
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
-        # Panel Priority
-        self.pPriority.submit.clicked.connect(lambda: self.click_submit())
-        self.pPriority.previous.clicked.connect(lambda: self.showPreviousPanel())
+        # Panel Result
+        self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
+
 
 
     """
@@ -145,25 +136,19 @@ class MainWindow(QMainWindow):
                1: self.lb1,
                2: self.lb2,
                3: self.lb3,
-               4: self.lb4}
-        for i in range(5):
+               }
+        for i in range(4):
             dic[i].setFrameShape(QFrame.NoFrame)
             if i is currentIndex:
                 dic[i].setFrameShape(QFrame.Box)
 
     def click_next(self):
         currentIndex = self.rightLayout.currentIndex()
-
         if currentIndex == 0:
             self.guiData.setCourseLimit()
             self.pInstructor.filterEvent(self.pCourse)
         elif currentIndex == 1:
             self.guiData.setCourses()
-        elif currentIndex == 2:
-            self.guiData.setSchoolDay()
-            self.guiData.setTime()
-            self.guiData.setClassLen()
-
         self.showNextPanel()
 
     def showNextPanel(self):
@@ -173,6 +158,9 @@ class MainWindow(QMainWindow):
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() - 1)
 
     def click_submit(self):
+        self.guiData.setSchoolDay()
+        self.guiData.setTime()
+        self.guiData.setClassLen()
         self.guiData.setPriority()
         self.errmsg = self.guiData.dataValidation_Error()  # Error message of user input
         if len(self.errmsg) == 0:
