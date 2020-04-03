@@ -97,13 +97,9 @@ class PanelCourse(QMainWindow):
         self.courseList.setHeaderLabel("Course Available")
         self.courseList.expanded.connect(lambda: self.courseList.setColumnWidth(0, (self.courseList.width() + 200)))
 
-
         # connect to database
         self.db = DB()
         self.db.useDatabase()
-
-        # list of
-
 
         # fetch and display data
         subjects = self.db.getSubject()     # list of subject

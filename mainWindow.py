@@ -15,6 +15,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.guiData = None
         self.errmsg = None
+        self.info = None
         """
         Draw the main window
         """
@@ -173,14 +174,17 @@ class MainWindow(QMainWindow):
 
     def click_submit(self):
         self.guiData.setPriority()
-        self.errmsg = self.guiData.dataValidation()  # Error message of user input
+        self.errmsg = self.guiData.dataValidation_Error()  # Error message of user input
         if len(self.errmsg) == 0:
+            self.info = self.guiData.dataValidation_Info()
+            self.dialog(self.info, 1)
             coreDriver(self.guiData)
             self.showNextPanel()
         else:
-            self.dialog()
+            self.dialog(self.errmsg, 0)
 
-    def dialog(self):
+    # flag: 1 for info, 0 for errmsg
+    def dialog(self, msg, flag):
         window = QDialog()
         window.setWindowTitle("AutoScheduler")
         window.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
@@ -189,17 +193,21 @@ class MainWindow(QMainWindow):
 
         layout = QVBoxLayout(window)
         layout.setSpacing(10)
-        lb1 = QLabel("Error!")
+        if flag:
+            lb1 = QLabel("Please notice:")
+            button = QPushButton("OK")
+        else:
+            lb1 = QLabel("Error!")
+            button = QPushButton("Close")
+        button.clicked.connect(lambda: window.close())
         font = self.font
         font.setBold(True)
         lb1.setFont(font)
         layout.addWidget(lb1)
-        for i in range(len(self.errmsg)):
-            layout.addWidget(QLabel("\t" + str(i+1) + ". " + self.errmsg[i]))
+        for i in range(len(msg)):
+            layout.addWidget(QLabel("\t" + str(i+1) + ". " + msg[i]))
 
         hl = QHBoxLayout(window)
-        button = QPushButton("Close")
-        button.clicked.connect(lambda: window.close())
         hl.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
         hl.addWidget(button)
         layout.addLayout(hl)

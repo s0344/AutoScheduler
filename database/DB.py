@@ -244,6 +244,14 @@ class DB():
         self.cur.close()
         return result
 
+    def getCourse_TimeTBA(self):
+        self.cur = self.db.cursor()
+        sql = "select subj, crse from section where crn in (select distinct crn from lesson where start = 'TBA')"
+        self.cur.execute(sql)
+        result = self.cur.fetchall()
+        self.cur.close()
+        return result
+
     # close the database connection
     def close(self):
         self.db.close()

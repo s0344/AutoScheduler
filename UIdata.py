@@ -1,5 +1,6 @@
 from PyQt5.QtCore import Qt
 from datetime import datetime
+from database.DB import DB
 
 # a class getting data from the gui
 class UIdata():
@@ -185,7 +186,7 @@ class UIdata():
     def getCourseLimit(self):
         return self.__courseLimit
 
-    def dataValidation(self):
+    def dataValidation_Error(self):
         message = []
 
         # start time and end time
@@ -251,6 +252,23 @@ class UIdata():
 
         return message
 
+    def dataValidation_Info(self):
+        message = []
+
+        db = DB()
+        db.useDatabase()
+        # list of course which exists time TBA section
+        tbaList = db.getCourse_TimeTBA()
+        db.close()
+
+        for subjLv in self.__courses:
+            for crse in subjLv.crseList:
+                tup = (subjLv.subj, crse.crseNum)
+                if tup in tbaList:
+                    message.append("For " + subjLv.subj + " " + crse.crseNum +
+                                   ": There exists section(s) which class time is TBA")
+        message.append("These section will NOT be consider during scheduling")
+        return message
 
 # container for data of selected list
 class slTuple():
