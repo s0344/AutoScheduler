@@ -41,13 +41,6 @@ def coreDriver(data):
         classList += course.classList
     print("done")
 
-    # if class time is TBA, don't take it into account
-    print("> Popping classes with TBA time...  ", end="")
-    for classes in classList:
-        if classes.start == "TBA":
-            classList.pop(classes)
-    print("done")
-
     # use bruteforce function
     print("> class list length is: ", len(classList))
     print("> course limit is: ", int(courseLimit))

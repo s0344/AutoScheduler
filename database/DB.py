@@ -226,8 +226,9 @@ class DB():
     def getLessonCount(self, subj, crse):
         self.cur = self.db.cursor()
         sql = "select crn, count(*) " \
-              "from classes natural join section natural join lesson where subj = %s and crse = %s group by crn;"
-        var = (subj, crse)
+              "from classes natural join section natural join lesson where subj = %s and crse = %s and start <> %s " \
+              "group by crn;"
+        var = (subj, crse,"TBA")
         self.cur.execute(sql, var)
         result = self.cur.fetchall()
         self.cur.close()
