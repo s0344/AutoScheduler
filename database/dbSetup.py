@@ -3,7 +3,7 @@ from core.Course import *
 
 
 if __name__ == '__main__':
-    '''
+
     csFile = 'cs.csv'
     langFile = 'lang.csv'
     rootsFile = 'roots.csv'
@@ -16,6 +16,10 @@ if __name__ == '__main__':
     testdb.importData(rootsFile, flag)
     testdb.importData(mapFile, flag)
 
+    testdb.close()
+
+
+    '''
     l1 = testdb.getSubject()
     l2 = testdb.getLevel("CMPT")
     l3 = testdb.getCourse("CMPT", "100")
@@ -68,17 +72,15 @@ if __name__ == '__main__':
     endtime = datetime.strptime(r1[0][7], '%H:%M')
     print(starttime)
     print(endtime-starttime)
-
-    testdb.close()
-
-    '''
-    '''
+    
+    
     c = Course("CMPT","239","1")
     for classes in c.classList:
         classes.printDetailData()
         classes.printSimpleData()
-    '''
-    class idk():
+        
+        
+      class idk():
         def __init___(self):
 
     def sth():
@@ -94,3 +96,5 @@ if __name__ == '__main__':
         print(list)
 
     sth()
+
+    '''

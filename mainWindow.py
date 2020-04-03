@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.guiData = None
+        self.errmsg = None
         """
         Draw the main window
         """
@@ -172,5 +173,37 @@ class MainWindow(QMainWindow):
 
     def click_submit(self):
         self.guiData.setPriority()
-        coreDriver(self.guiData)
-        self.showNextPanel()
+        self.errmsg = self.guiData.dataValidation()  # Error message of user input
+        if len(self.errmsg) == 0:
+            coreDriver(self.guiData)
+            self.showNextPanel()
+        else:
+            self.dialog()
+
+    def dialog(self):
+        window = QDialog()
+        window.setWindowTitle("AutoScheduler")
+        window.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
+        window.setAttribute(Qt.WA_DeleteOnClose)
+        window.setFont(self.font)
+
+        layout = QVBoxLayout(window)
+        layout.setSpacing(10)
+        lb1 = QLabel("Error!")
+        font = self.font
+        font.setBold(True)
+        lb1.setFont(font)
+        layout.addWidget(lb1)
+        for i in range(len(self.errmsg)):
+            layout.addWidget(QLabel("\t" + str(i+1) + ". " + self.errmsg[i]))
+
+        hl = QHBoxLayout(window)
+        button = QPushButton("Close")
+        button.clicked.connect(lambda: window.close())
+        hl.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        hl.addWidget(button)
+        layout.addLayout(hl)
+
+        window.exec()
+
+

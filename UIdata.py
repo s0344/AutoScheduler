@@ -84,7 +84,6 @@ class UIdata():
             self.__st[i] = datetime.strptime(self.__st[i], "%H:%M")
             self.__et[i] = datetime.strptime(self.__et[i], "%H:%M")
 
-
     def setCourses(self):
         self.__courses = self.__selectedData()
 
@@ -203,27 +202,52 @@ class UIdata():
         if all(v == 0 for v in self.__schoolDay):
             message.append("No School Day Selected")
 
-        # course = self.__courses
-        # sum_Man = 0     # sum of user-selected mandatory
-        # for subjLv in course:
-        #     sum_LvMan = 0   # sum of user-selected mandatory in the subj-level
-        #     crseList = subjLv.crseList
-        #     for crse in crseList:
-        #         sum_LvMan += crse.mandatory
-        #         sum_Man += crse.mandatory
-        #
-        #         for instructor in crse.instructors:
-        #             if crse.mandatory == 1 and len(crse.instructors) == 1 and instructor[1] == 0:
-        #                 msg = "For your mandatory course " + str(subjLv.subj) + str(crse.crseNum) + \
-        #                       ", choose at least one instructor"
-        #                 message.append(msg)
-        #
-        #     if sum_LvMan > int(subjLv.lvLimit) and subjLv.lvLimit is not "Ignore":
-        #         msg = "For " + str(subjLv.subj) + str(subjLv.lv) + " Level : # of Mandatory Course > # of Course"
-        #         message.append(msg)
-        #
-        # if sum_Man > self.__courseLimit:
-        #     message.append("# of Mandatory Course > # of Course going to take")
+        # selected course list
+        sum_Course = 0  # sum of user-selected course
+        sum_Man = 0     # sum of user-selected mandatory
+        sum_LvLimit = 0 # sum of user-selected number of course going to take for the level
+        for subjLv in self.__courses:
+            crseList = subjLv.crseList
+            num_lvCourse = len(crseList)
+            sum_Course += num_lvCourse
+            sum_LvMan = 0  # sum of user-selected mandatory in the subj-level
+            for crse in crseList:
+                sum_LvMan += crse.mandatory
+                sum_Man += crse.mandatory
+
+                # at least one instructor is selected for a mandatory course
+                for instructor in crse.instructors:
+                    if crse.mandatory == 1 and len(crse.instructors) == 1 and instructor[1] == 0:
+                        msg = "For your mandatory course " + str(subjLv.subj) + str(crse.crseNum) + \
+                              ", please choose at least one instructor"
+                        message.append(msg)
+
+            # num_lvCourse should >= lvLimit, and lvLimit should >= sum_lvMan,
+            if subjLv.lvLimit != "Ignore":
+                lvLim = int(subjLv.lvLimit)
+                sum_LvLimit += lvLim
+
+                if lvLim > num_lvCourse:
+                    msg = "For " + str(subjLv.subj) + str(subjLv.lv) + " Level: " \
+                                                "# of course going to take > # of selected course"
+                    message.append(msg)
+
+                if sum_LvMan > lvLim:
+                    msg = "For " + str(subjLv.subj) + str(subjLv.lv) + " Level: " \
+                                                "# of Mandatory Course > Total # of course going to take"
+                    message.append(msg)
+
+        # courseLimit should >= sum_LvLimit
+        if sum_LvLimit > self.__courseLimit:
+            message.append("Sum of # course going to take by level > Total # of course going to take")
+
+        # sum_Course should >= courseLimit
+        if self.__courseLimit > sum_Course:
+            message.append("Total # of course going to take > Total # of selected course ")
+
+        # courseLimit should >= sum_Man
+        if sum_Man > self.__courseLimit:
+            message.append("Total # of mandatory course > Total # of course going to take")
 
         return message
 

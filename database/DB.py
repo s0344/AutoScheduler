@@ -75,9 +75,6 @@ class DB():
             self.cur.close()
             return 1
 
-
-
-
     def importData(self, fileName, flag):
         if flag:
             # create self.cursor to communicate with database
