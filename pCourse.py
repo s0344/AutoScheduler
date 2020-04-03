@@ -103,7 +103,7 @@ class PanelCourse(QMainWindow):
         self.db.useDatabase()
 
         # list of
-        tbaList = self.db.getcrns_TimeTBA()
+
 
         # fetch and display data
         subjects = self.db.getSubject()     # list of subject
