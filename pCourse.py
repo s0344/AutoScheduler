@@ -140,7 +140,7 @@ class PanelCourse(QMainWindow):
     def initSelectedList(self):
         self.selectedList.setColumnCount(3)
         self.selectedList.setHeaderLabels(["Intended Course", "Mandatory", "# of Course"])
-        self.selectedList.setColumnWidth(0, 210)
+        self.selectedList.setColumnWidth(0, 300)
         self.selectedList.setColumnWidth(1, 90)
         self.selectedList.setColumnWidth(2, 80)
         header = self.selectedList.headerItem()

@@ -267,7 +267,7 @@ class UIdata():
                 if tup in tbaList:
                     message.append("For " + subjLv.subj + " " + crse.crseNum +
                                    ": There exists section(s) which class time is TBA")
-        message.append("These section will NOT be consider during scheduling")
+        message.append("These sections will NOT be considered during scheduling")
         return message
 
 # container for data of selected list

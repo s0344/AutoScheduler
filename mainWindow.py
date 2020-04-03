@@ -190,9 +190,10 @@ class MainWindow(QMainWindow):
         window.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
         window.setAttribute(Qt.WA_DeleteOnClose)
         window.setFont(self.font)
+        window.setContentsMargins(15, 15, 15, 10)
 
         layout = QVBoxLayout(window)
-        layout.setSpacing(10)
+        layout.setSpacing(15)
         if flag:
             lb1 = QLabel("Please notice:")
             button = QPushButton("OK")
@@ -200,9 +201,7 @@ class MainWindow(QMainWindow):
             lb1 = QLabel("Error!")
             button = QPushButton("Close")
         button.clicked.connect(lambda: window.close())
-        font = self.font
-        font.setBold(True)
-        lb1.setFont(font)
+        lb1.setFont(self.font)
         layout.addWidget(lb1)
         for i in range(len(msg)):
             layout.addWidget(QLabel("\t" + str(i+1) + ". " + msg[i]))
