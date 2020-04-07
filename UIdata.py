@@ -31,6 +31,9 @@ class UIdata():
         # index 0 - 4: Monday - Friday
         self.__et = None
 
+        self.errmsg = []   # Error message
+        self.info = []     # warning message
+
         """
         Data from Selected List (sl)
         list of slTuple:
@@ -87,6 +90,12 @@ class UIdata():
 
     def setCourses(self):
         self.__courses = self.__selectedData()
+
+    def setErrmsg(self):
+        self.errmsg = self.dataValidation_Error()
+
+    def setInfo(self):
+        self.info = self.dataValidation_Info()
 
     def __selectedData(self):
         data = []
