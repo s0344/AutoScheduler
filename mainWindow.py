@@ -13,8 +13,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.guiData = None
-        self.errmsg = None
-        self.info = None
         self.result = None
         """
         Draw the main window
@@ -162,16 +160,15 @@ class MainWindow(QMainWindow):
         self.guiData.setTime()
         self.guiData.setClassLen()
         self.guiData.setPriority()
-        print(self.guiData.getPriority())
-        self.errmsg = self.guiData.dataValidation_Error()  # Error message of user input
-        if len(self.errmsg) == 0:
-            self.info = self.guiData.dataValidation_Info()
-            if len(self.info) != 0:
-                self.dialog(self.info, 1)
+        self.guiData.setErrmsg()
+        if len(self.guiData.errmsg) == 0:
+            self.guiData.setInfo()
+            if len(self.guiData.info) != 0:
+                self.dialog(self.guiData.info, 1)
             self.result = coreDriver(self.guiData)
             self.showNextPanel()
         else:
-            self.dialog(self.errmsg, 0)
+            self.dialog(self.guiData.errmsg, 0)
 
     # flag: 1 for info, 0 for errmsg
     def dialog(self, msg, flag):
@@ -182,6 +179,11 @@ class MainWindow(QMainWindow):
         window.setFont(self.font)
         window.setContentsMargins(15, 15, 15, 10)
 
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(10)
+        font.setBold(True)
+
         layout = QVBoxLayout(window)
         layout.setSpacing(15)
         if flag:
@@ -191,9 +193,14 @@ class MainWindow(QMainWindow):
             lb1 = QLabel("Error!")
             button = QPushButton("Close")
         button.clicked.connect(lambda: window.close())
-        lb1.setFont(self.font)
+        lb1.setFont(font)
         layout.addWidget(lb1)
         for i in range(len(msg)):
+            if i == len(msg) - 1 and flag:
+                lb = QLabel(msg[i])
+                lb.setFont(font)
+                layout.addWidget(lb)
+                continue
             layout.addWidget(QLabel("\t" + str(i+1) + ". " + msg[i]))
 
         hl = QHBoxLayout(window)
