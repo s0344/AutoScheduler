@@ -188,7 +188,7 @@ class UIdata():
             for crse in sl.crseList:
                 for instructors in crse.instructors:
                     if instructors[1] == 0:
-                        tup = (crse.crseNum, instructors[0])
+                        tup = (sl.subj, crse.crseNum, instructors[0])
                         data.append(tup)
         return data
 
