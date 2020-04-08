@@ -41,7 +41,7 @@ def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, ma
 
 
 # This function check through the previous class to see if there are any conflicts
-# Conflicts: same course, day time conflict, missing mandatory course
+# Conflicts: same course, day time conflict, missing mandatory course, check level limit
 # True: there is NO conflict  False: there is a conflict
 
 def checkClasses(temp, mandatoryList, lvLimitList):

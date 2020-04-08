@@ -88,8 +88,6 @@ class Schedule():
         # PART 1 - find all the data that is needed
         instList = []
         classLenList = []
-        # week day list to match the class days
-        weekDay = ['M', 'T', 'W', 'R', 'F']
 
         # create default preference for the priorities
         schoolDayPref = data.getSchoolDay()
