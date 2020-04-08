@@ -67,8 +67,10 @@ class PanelPreference(QMainWindow):
         self.previous = QPushButton("Previous", self.widget)
         self.previous.setFont(self.font)
         # Next Button
-        self.submit = QPushButton("Submit", self.widget)
-        self.submit.setFont(self.fontB)
+        self.fullSearch = QPushButton("Full Search", self.widget)
+        self.fullSearch.setFont(self.fontB)
+        self.quickSearch = QPushButton("Quick Search", self.widget)
+        self.quickSearch.setFont(self.fontB)
 
         """
         Layout
@@ -104,7 +106,8 @@ class PanelPreference(QMainWindow):
         self.hl2 = QHBoxLayout(self.widget)
         self.hl2.addSpacerItem(self.spacer)
         self.hl2.addWidget(self.previous)
-        self.hl2.addWidget(self.submit)
+        self.hl2.addWidget(self.quickSearch)
+        self.hl2.addWidget(self.fullSearch)
         # Overall vertical layout
         self.layout.addLayout(self.gl)
         self.layout.addWidget(self.hLine1)

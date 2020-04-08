@@ -119,7 +119,8 @@ class MainWindow(QMainWindow):
         self.pInstructor.next.clicked.connect(lambda: self.click_next())
         self.pInstructor.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Preference
-        self.pPreference.submit.clicked.connect(lambda: self.click_submit())
+        self.pPreference.fullSearch.clicked.connect(lambda: self.click_submit(1))
+        self.pPreference.quickSearch.clicked.connect(lambda: self.click_submit(0))
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Result
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
@@ -155,7 +156,8 @@ class MainWindow(QMainWindow):
     def showPreviousPanel(self):
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() - 1)
 
-    def click_submit(self):
+    # flag 1: full search(brute force), flag 0: quick search(return 1 worked result)
+    def click_submit(self, flag):
         self.guiData.setSchoolDay()
         self.guiData.setTime()
         self.guiData.setClassLen()
@@ -165,7 +167,7 @@ class MainWindow(QMainWindow):
             self.guiData.setInfo()
             if len(self.guiData.info) != 0:
                 self.dialog(self.guiData.info, 1)
-            self.result = coreDriver(self.guiData)
+            self.result = coreDriver(self.guiData, flag)
             self.showNextPanel()
         else:
             self.dialog(self.guiData.errmsg, 0)
