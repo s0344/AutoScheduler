@@ -1,6 +1,7 @@
 from core.Course import *
 from core.bruteForce import bruteForceExecute
 from core.Result import *
+from core.ASB import ASBAlgo
 
 # this is the driver code for the core, takes UIdata as input, returns a result object
 def coreDriver(data, flag):
@@ -21,7 +22,7 @@ def coreDriver(data, flag):
     print("> Adding data to course list...  ", end="")
     for subjLv in course:
         crseList = subjLv.crseList
-        lvLimitList.append((subjLv.subj + subjLv.lv[0], subjLv.lvLimit, 0))
+        lvLimitList.append((subjLv.subj + subjLv.lv[0], subjLv.lvLimit))
         for crse in crseList:
             if int(crse.mandatory):
                 mandatoryList.append((subjLv.subj, crse.crseNum, crse.mandatory))
@@ -29,7 +30,6 @@ def coreDriver(data, flag):
 
     print("done")
 
-    lvLimitList = dict(lvLimitList)
 
     print("> printing mandatory class")
     for mandClass in mandatoryList:
@@ -43,6 +43,7 @@ def coreDriver(data, flag):
 
     # use bruteforce function if flag == 1, use modified A star search with back tracking if flag == 0
     if flag:
+        lvLimitList = dict(lvLimitList)
         print("> class list length is: ", len(classList))
         print("> course limit is: ", int(courseLimit))
         scheduleList = bruteForceExecute(classList, len(classList), int(courseLimit),mandatoryList, lvLimitList)
@@ -67,7 +68,7 @@ def coreDriver(data, flag):
         result.printResult()
         return result
     else:
-        print("> pruning course list...  ", end="")
+        print("> pruning course list...  ", end='')
         weekDay = ['M', 'T', 'W', 'R', 'F']
         schoolDayPref = data.getSchoolDay()
         instPref = data.getNotSelectedInst()
@@ -78,7 +79,9 @@ def coreDriver(data, flag):
 
         # prune the class first to reduce the size of initial data
         for course in courseList:
-            for i in range(len(classList)):
+            length = len(course.classList)
+            i = 0
+            while i < length:
                 flag = False
 
                 # pop the class if not match day pref
@@ -90,21 +93,31 @@ def coreDriver(data, flag):
                             if weekDay[j] in day:
                                 course.classList.pop(i)
                                 flag = True
+                                length -= 1
                                 break
                     if flag:
                             break
                 if flag:
+                    i += 1
                     continue
 
                 # pop the class if not match instructor pref
                 # if the inst is same, pop, set flag to continue
+                subj = course.classList[i].subj
+                crse = course.classList[i].crse
+                instructor = course.classList[i].inst
                 for inst in instPref:
-                    if inst == course.classList[i].inst:
-                        course.classList.pop(i)
-                        flag = True
-                        break
-                if flag:
+                    if inst[0]==subj and inst[1]==crse:
+                        if inst[2]==instructor:
+                            course.classList.pop(i)
+                            flag = True
+                            length -= 1
+                            break
+                    else:
                         continue
+                if flag:
+                    i += 1
+                    continue
 
                 # check start time and end time
                 for j in range(5):
@@ -114,12 +127,14 @@ def coreDriver(data, flag):
                             if course.classList[i].start[count] < startPref[j] or course.classList[i].end[count] > endPref[j]:
                                 course.classList.pop(i)
                                 flag = True
+                                length -= 1
                                 break
                         count += 1
                     if flag:
                             break
                 if flag:
-                        continue
+                    i += 1
+                    continue
 
                 # check class length
                 for j in range(3):
@@ -128,13 +143,27 @@ def coreDriver(data, flag):
                             if classLenRef[j] == classLen:
                                 course.classList.pop(i)
                                 flag = True
+                                length -= 1
                                 break
                     if flag:
                             break
                 if flag:
-                        continue
+                    i += 1
+                    continue
+
+                i += 1
+        print("done")
 
         # now we done with pruning the courseList, we can send it to the algorithm
+        scheduleList = ASBAlgo(courseList, lvLimitList, mandatoryList, int(courseLimit))
+
+        print("> Adding schedule list to result...", end="")
+        result = Result(scheduleList)
+        print("done")
+
+        print("> printing results")
+        result.printResult()
+        return result
 
 
 

@@ -1,5 +1,6 @@
 from database.DB import *
 from core.Classes import *
+import copy
 
 class Course():
     def __init__(self, subj, crse):
@@ -19,3 +20,6 @@ class Course():
             if int(tempClass.rem) > 0:
                 list.append(Classes(i[0]))
         return list
+
+    def setClassList(self, newClassList):
+        self.classList = newClassList

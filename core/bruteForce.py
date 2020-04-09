@@ -6,11 +6,11 @@ from core.Schedule import Schedule
 # It will return a schedule list
 def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLimitList):
     # Temporary classListay to store combination
-    temp = [0] * courseLimit;
+    temp = [0] * courseLimit
     scheduleList = []
     # bruteForce function will store the result in the scheduleList
     print("> Starting brute force algorithm to find possible schedules...  ", end="")
-    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList, True);
+    bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList, True)
     print("done")
     return scheduleList
 
