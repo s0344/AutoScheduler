@@ -216,6 +216,8 @@ class UIdata():
         sum_Course = 0  # sum of user-selected course
         sum_Man = 0     # sum of user-selected mandatory
         sum_LvLimit = 0 # sum of user-selected number of course going to take for the level
+        allLvNotIgnored = False
+        ignoreCount = 0
         for subjLv in self.__courses:
             crseList = subjLv.crseList
             num_lvCourse = len(crseList)
@@ -234,6 +236,7 @@ class UIdata():
 
             # num_lvCourse should >= lvLimit, and lvLimit should >= sum_lvMan,
             if subjLv.lvLimit != "Ignore":
+                ignoreCount += 1
                 lvLim = int(subjLv.lvLimit)
                 sum_LvLimit += lvLim
 
@@ -247,9 +250,15 @@ class UIdata():
                                                 "# of Mandatory Course > Total # of course going to take"
                     message.append(msg)
 
+        if ignoreCount == len(self.__courses):
+            allLvNotIgnored = True
+
         # courseLimit should >= sum_LvLimit
         if sum_LvLimit > self.__courseLimit:
             message.append("Sum of # course going to take by level > Total # of course going to take")
+        elif allLvNotIgnored and sum_LvLimit < self.__courseLimit:
+            message.append("Sum of # course going to take by level < Total # of course going to take")
+
 
         # sum_Course should >= courseLimit
         if self.__courseLimit > sum_Course:
