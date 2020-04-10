@@ -20,7 +20,6 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
     lvLimitLst = []
     lvLimitCount = []
     poppedCourse = OrderedDict()
-    poppedMand = []
     backtrackState = [-1]
     result = []
     lastMand = ''
@@ -40,15 +39,13 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
 
     # starting algorithm
     while courseCount != courseLimit:
-
         # get the courses base on priority
         tempCourse = getCourse(courseList, priorityCount, mandatoryList, lvLimitLst)
-
         # find the Course with least section
         backtrackFlag = [0]
         courseSelected = findLeastSectionCourse(tempCourse, backtrackFlag)
         updatePriority(courseSelected, priorityCount, mandatoryList, lvLimitLst, lvLimitCount, lastMand, lastLv)
-        if not backtrackFlag:
+        if not backtrackFlag[0]:
             signal = backtrack(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList, result)
             if signal:
                 print("done")
@@ -96,13 +93,22 @@ def getCourse(courseList, priorityCount, mandatoryList, lvLimitLst):
 # return a course with least classes in it
 def findLeastSectionCourse(tempCourse, backtrackFlag):
     # first check if there are any class left, if yes: flag=true, if no flag=false
-    for course in tempCourse:
-        if len(course.classList) > 0:
-            backtrackFlag = 1
-            break
-
     smallestCount = len(tempCourse[0].classList)
     smallestIndex = 0
+    checkFlag = True
+
+    for i in range(1, len(tempCourse)):
+        # initialize the smallest count and index with max
+        if len(tempCourse[i].classList) > smallestCount:
+            smallestCount = len(tempCourse[i].classList)
+            smallestIndex = i
+
+        if len(tempCourse[i].classList) > 0 and checkFlag:
+            backtrackFlag[0] = 1
+            checkFlag = False
+            continue
+
+
 
     # find the course with the least classes
     for i in range(1,len(tempCourse)):
@@ -241,7 +247,7 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
         # prune the course first before going to next course
         if not flag:
             popCourse = createPopCourse(course.subj, course.crse)
-            for index in pruneArray:
+            for index in sorted(pruneArray, reverse=True):  # do it from the end first so the front index wont be affected while popping
                 if selectedClass.crn != course.classList[index].crn:  # we don't want the selected class in the trash can
                     popCourse.classList.append(course.classList[index])
                 course.classList.pop(index)
