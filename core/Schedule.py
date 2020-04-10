@@ -235,7 +235,8 @@ class Schedule():
                 for i in range(5):
                     if weekDay[i] in day:
                         locationList[i].append(classes.location[index])
-                index += 1  # increment to the index for next lesson
+                if index < len(classes.location)-1:
+                    index += 1
 
         # start calculating score
         dayScore = [0,0,0,0,0]
