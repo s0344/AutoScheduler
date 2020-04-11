@@ -1,5 +1,4 @@
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 
 class PanelPreference(QMainWindow):
@@ -114,10 +113,6 @@ class PanelPreference(QMainWindow):
         self.layout.addLayout(self.hl1)
         self.layout.addWidget(self.hLine2)
         self.layout.addLayout(self.hl2)
-
-        """
-        Events
-        """
 
 
     """

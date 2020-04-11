@@ -1,4 +1,6 @@
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QMovie
 from PyQt5.QtWidgets import *
 from pCourse import PanelCourse
 from pInstructor import PanelInstructor
@@ -6,6 +8,7 @@ from pPreference import PanelPreference
 from pResult import PanelResult
 from UIdata import *
 from core.coreDriver import coreDriver
+import threading
 
 
 class MainWindow(QMainWindow):
@@ -23,6 +26,7 @@ class MainWindow(QMainWindow):
         self.centralWidget = QWidget(self)
         self.setCentralWidget(self.centralWidget)
         self.centralLayout = QHBoxLayout(self.centralWidget)   # Central Widget using horizontal layout
+        self.statusBar = self.statusBar()
 
         '''
         Left column widgets
@@ -124,7 +128,7 @@ class MainWindow(QMainWindow):
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Result
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
-        self.pResult.change.clicked.connect(lambda: self.priorityChange())
+        self.pResult.buttonChange.clicked.connect(lambda: self.priorityChange())
 
     """
     Member functions
@@ -167,10 +171,29 @@ class MainWindow(QMainWindow):
             self.guiData.setInfo()
             if len(self.guiData.info) != 0:
                 self.dialog(self.guiData.info, 1)
-            self.result = coreDriver(self.guiData, flag)
-            self.showNextPanel()
+            self.th1 = MyThread(coreDriver, (self.guiData, flag,))
+            self.th1.finished.connect(lambda: self.progressFinish())
+            self.th1.start()
+            self.pPreference.previous.setDisabled(True)
+            self.pPreference.fullSearch.setDisabled(True)
+            self.pPreference.quickSearch.setDisabled(True)
+            lbGif = QLabel()
+            lbText = QLabel("Progressing")
+            gif = QMovie("pictures/loading.gif")
+            gif.start()
+            lbGif.setScaledContents(True)
+            lbGif.setMovie(gif)
+            lbGif.setMaximumSize(20, 20)
+            self.statusBar.addWidget(lbGif)
+            self.statusBar.addWidget(lbText)
+
         else:
             self.dialog(self.guiData.errmsg, 0)
+
+    def progressFinish(self):
+        # self.pResult.drawResult()
+        self.showNextPanel()
+        self.statusBar.showMessage("Finished")
 
     # flag: 1 for info, 0 for errmsg
     def dialog(self, msg, flag):
@@ -215,5 +238,25 @@ class MainWindow(QMainWindow):
     def priorityChange(self):
         self.guiData.setPriority()
         self.result.rank(self.guiData)
+
+
+class MyThread(QtCore.QThread):
+    def __init__(self, func, args):
+        super(MyThread, self).__init__()
+        self.func = func
+        self.args = args
+        self.result = None
+
+    def run(self):
+        self.result = self.func(*self.args)
+
+    def get_result(self):
+        try:
+            return self.result
+        except Exception:
+            return None
+
+
+
 
 
