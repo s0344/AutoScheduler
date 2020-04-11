@@ -1,18 +1,22 @@
 from core.Schedule import Schedule
 import time
+import random
 
 # In order to generate all possible course
 # we chosen a Brute Force method as our Resource Allocation Algorithm
 # It will return a schedule list
 def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLimitList):
+    # shuffle the classList
+    random.shuffle(classList)
+
     # Temporary classListay to store combination
     temp = [0] * courseLimit
     scheduleList = []
     # bruteForce function will store the result in the scheduleList
-    print("> Starting brute force algorithm to find possible schedules...  ", end="")
+    print("> Starting brute force algorithm to find possible schedules...  ")
     startTime = time.time()
     bruteForce(classList, temp, 0, classListLen - 1, 0, courseLimit, scheduleList, mandatoryList,lvLimitList, True, startTime)
-    print("done")
+    print("  done")
     return scheduleList
 
 
@@ -41,8 +45,7 @@ def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, ma
         temp[index] = classList[i]
         bruteForce(classList, temp, i + 1, end, index + 1, courseLimit, scheduleList, mandatoryList, lvLimitList, False, startTime)
         if flag:
-            x = ((i+1)/len(classList))*100
-            print("progress ", round(x, 2), "%")
+            print("  progress at branch", i+1)
         i += 1
 
 
