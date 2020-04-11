@@ -49,7 +49,7 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
             signal = backtrack(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList, result)
             if signal:
                 print("done")
-                return  # NO RESULT
+                return [Schedule([])] # NO RESULT
             courseCount = backtrackState[0]
             continue
 
@@ -277,10 +277,11 @@ def backtrack(backtrackState, poppedCourse, courseList, lastMand, lastLv, priori
     # if it is at root and empty = no result
     # if not at root but empty = go one level up -> count -= 1
     isEmpty = True
-    for course in poppedCourse:
-        if len(poppedCourse.classList) > 0:
-            isEmpty = False
-            break
+    for node, courseLst in poppedCourse.items():
+        for course in courseLst:
+            if len(course.classList) > 0:
+                isEmpty = False
+                break
 
     if backtrackState[0] > 0 and isEmpty:
         backtrackState[0] -= 1
@@ -304,18 +305,19 @@ def restore(backtrackState, poppedCourse, courseList, lastMand, lastLv, priority
             priorityCount[0] = 1
         elif key == lastMand:
             priorityCount[0] = 0
+
+        # restore mandatoryList and lvLimitLst
+        for levels in lvLimitCount:
+            if key[0:5] == levels[0]:
+                if priorityCount[0] < 2:
+                    levels[1] -= 1
+                if priorityCount[0] == 0:
+                    mandatoryList.append((key[0:4], key[4:7], 1))
+
         # restore course
         for popped in poppedCourse[key]:
             for course in courseList:
                 if popped.subj == course.subj and popped.crse == course.crse:
-                    # restore mandatoryList and lvLimitLst
-                    if priorityCount[0] < 2:
-                        poppedLevel = popped.subj + popped.crse[0]
-                        for levels in lvLimitCount:
-                            if poppedLevel == levels[0]:
-                                levels[1] -= 1
-                    if priorityCount[0] == 0:
-                        mandatoryList.append((popped.subj, popped.crse, 1))
                     tempClassList = course.classList + popped.classList
                     course.setClassList(tempClassList)
 
@@ -324,7 +326,9 @@ def restore(backtrackState, poppedCourse, courseList, lastMand, lastLv, priority
         # pop the poppedCourse dict
         poppedCourse.pop(key)
         # pop the result
-        result = result.pop[i]
+        print(result)
+        print(type(result))
+        result = result.pop(i)
 
 def getKey(dict, n):
     items = list(dict.items())
