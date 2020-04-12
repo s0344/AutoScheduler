@@ -8,7 +8,6 @@ from pPreference import PanelPreference
 from pResult import PanelResult
 from UIdata import *
 from core.coreDriver import coreDriver
-import threading
 
 
 class MainWindow(QMainWindow):
@@ -125,10 +124,11 @@ class MainWindow(QMainWindow):
         # Panel Preference
         self.pPreference.fullSearch.clicked.connect(lambda: self.click_submit(1))
         self.pPreference.quickSearch.clicked.connect(lambda: self.click_submit(0))
+        # self.pPreference.fullSearch.clicked.connect(lambda: self.showNextPanel())
+        # self.pPreference.quickSearch.clicked.connect(lambda: self.showNextPanel())
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Result
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
-        self.pResult.buttonChange.clicked.connect(lambda: self.priorityChange())
 
     """
     Member functions
@@ -158,6 +158,10 @@ class MainWindow(QMainWindow):
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() + 1)
 
     def showPreviousPanel(self):
+        if self.rightLayout.currentIndex() == 3:
+            self.statusBar.showMessage("")
+            self.statusBar.removeWidget(self.lbText)
+            self.statusBar.removeWidget(self.lbGif)
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() - 1)
 
     # flag 1: full search(brute force), flag 0: quick search(return 1 worked result)
@@ -177,21 +181,23 @@ class MainWindow(QMainWindow):
             self.pPreference.previous.setDisabled(True)
             self.pPreference.fullSearch.setDisabled(True)
             self.pPreference.quickSearch.setDisabled(True)
-            lbGif = QLabel()
-            lbText = QLabel("Progressing")
-            gif = QMovie("pictures/loading.gif")
-            gif.start()
-            lbGif.setScaledContents(True)
-            lbGif.setMovie(gif)
-            lbGif.setMaximumSize(20, 20)
-            self.statusBar.addWidget(lbGif)
-            self.statusBar.addWidget(lbText)
-
+            self.lbGif = QLabel()
+            self.lbText = QLabel("Progressing")
+            self.gif = QMovie("pictures/loading.gif")
+            self.gif.start()
+            self.lbGif.setScaledContents(True)
+            self.lbGif.setMovie(self.gif)
+            self.lbGif.setMaximumSize(20, 20)
+            self.statusBar.addWidget(self.lbGif)
+            self.statusBar.addWidget(self.lbText)
         else:
             self.dialog(self.guiData.errmsg, 0)
 
     def progressFinish(self):
         # self.pResult.drawResult()
+        self.pPreference.previous.setDisabled(False)
+        self.pPreference.fullSearch.setDisabled(False)
+        self.pPreference.quickSearch.setDisabled(False)
         self.showNextPanel()
         self.statusBar.showMessage("Finished")
 
@@ -234,11 +240,6 @@ class MainWindow(QMainWindow):
         layout.addLayout(hl)
 
         window.exec()
-
-    def priorityChange(self):
-        self.guiData.setPriority()
-        self.result.rank(self.guiData)
-
 
 class MyThread(QtCore.QThread):
     def __init__(self, func, args):

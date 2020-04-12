@@ -10,8 +10,6 @@ class PanelResult(QMainWindow):
         self.setCentralWidget(self.widget)
         self.layout = QHBoxLayout(self.widget)  # Overall horizontal layout
 
-        self.dialog = None
-
         # Font
         self.fontB = QtGui.QFont()
         self.fontB.setFamily("Arial")
@@ -45,23 +43,6 @@ class PanelResult(QMainWindow):
         self.buttonSort = QPushButton("Sort")
         self.buttonSort.setFont(self.font)
 
-        '''
-        Widget in dialog 
-        '''
-        defaultPriority = ['School Day', 'Length of Class', 'Start Time', 'End Time', 'Instructor']
-        self.priorityList = MainForm(defaultPriority)
-        self.priorityList.setMaximumWidth(180)
-        self.priorityList.view.setFont(self.listFont)
-        self.buttonChange = QPushButton("Change")
-        self.buttonChange.setFont(self.font)
-        self.buttonNext = QPushButton("Next")
-        self.chkbox1 = self.checkBox('School Day', Qt.Checked)
-        self.chkbox2 = self.checkBox('Length of Class', Qt.Checked)
-        self.chkbox3 = self.checkBox('Start Time', Qt.Checked)
-        self.chkbox4 = self.checkBox('End Time', Qt.Checked)
-        self.chkbox5 = self.checkBox('Instructor', Qt.Checked)
-
-
         """
         Layout
         """
@@ -74,60 +55,95 @@ class PanelResult(QMainWindow):
         self.layout.addWidget(self.previous)
         self.layout.addWidget(self.buttonSort)
 
-        '''
-        Event
-        '''
-        self.buttonSort.clicked.connect(lambda: self.sort())
-        self.buttonNext.clicked.connect(lambda: self.dialog.stl.setCurrentIndex(self.dialog.stl.currentIndex() + 1))
 
-    def sort(self):
-        self.dialog = QDialog()
-        self.dialog.setWindowTitle("AutoScheduler - Priority setting")
-        self.dialog.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
-        self.dialog.setAttribute(Qt.WA_DeleteOnClose)
-        self.dialog.setFont(self.font)
-        self.dialog.setContentsMargins(15, 15, 15, 10)
-        stl = QStackedLayout(self.dialog)
-        widget1 = QWidget(self.dialog)
-        widget2 = QWidget(self.dialog)
+class Dialog_sort(QDialog):
+    def __init__(self, gui):
+        super(Dialog_sort, self).__init__()
+        self.gui = gui
+        self.setWindowTitle("Priority setting")
+        self.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
+        self.setAttribute(Qt.WA_DeleteOnClose)
 
-        vl1 = QVBoxLayout(widget1)
-        hl1 = QHBoxLayout()
-        vl1.addWidget(self.chkbox1)
-        vl1.addWidget(self.chkbox2)
-        vl1.addWidget(self.chkbox3)
-        vl1.addWidget(self.chkbox4)
-        vl1.addWidget(self.chkbox5)
-        hl1.addWidget(self.buttonNext)
-        vl1.addLayout(hl1)
+        # Font
+        self.fontB = QtGui.QFont()
+        self.fontB.setFamily("Arial")
+        self.fontB.setPointSize(9)
+        self.fontB.setBold(True)
+        self.fontB.setWeight(75)
 
-        vl2 = QVBoxLayout(widget2)
-        hl2 = QHBoxLayout()
-        vl2.addWidget(self.priorityList)
-        hl2.addWidget(self.buttonChange)
-        vl2.addLayout(hl2)
+        self.font = QtGui.QFont()
+        self.font.setFamily("Arial")
+        self.font.setPointSize(9)
+        self.font.setBold(False)
 
-        stl.addWidget(widget1)
-        stl.addWidget(widget2)
+        self.listFont = QtGui.QFont()
+        self.listFont.setFamily("Arial")
+        self.listFont.setPointSize(10)
+        self.listFont.setBold(True)
+        self.listFont.setWeight(75)
 
-        self.dialog.exec()
+        self.setFont(self.font)
+        self.stl = QStackedLayout(self)
+
+        self.lb1 = QLabel("Select preference that you interested in: ")
+        self.lb1.setFont(self.fontB)
+        self.lb2 = QLabel("Sort the priority of preference: ")
+        self.lb2.setFont(self.fontB)
+        self.chkbox1 = self.checkBox('School Day', Qt.Checked)
+        self.chkbox2 = self.checkBox('Length of Class', Qt.Checked)
+        self.chkbox3 = self.checkBox('Start Time', Qt.Checked)
+        self.chkbox4 = self.checkBox('End Time', Qt.Checked)
+        self.chkbox5 = self.checkBox('Instructor', Qt.Checked)
+        self.buttonNext = QPushButton("Next")
+        self.buttonChange = QPushButton("Change")
+
+        self.widget1 = QWidget()
+        self.vl1 = QVBoxLayout(self.widget1)
+        self.vl1.addWidget(self.lb1)
+        self.vl1.addWidget(self.chkbox1)
+        self.vl1.addWidget(self.chkbox2)
+        self.vl1.addWidget(self.chkbox3)
+        self.vl1.addWidget(self.chkbox4)
+        self.vl1.addWidget(self.chkbox5)
+        self.vl1.addWidget(self.buttonNext)
+
+        self.stl.addWidget(self.widget1)
+
+        self.priority = []
+
+        self.buttonNext.clicked.connect(lambda: self.click_next())
 
     def click_next(self):
-        priority = []
-        if self.chkbox1 == Qt.Checked:
-            priority.append('School Day')
-        if self.chkbox2 == Qt.Checked:
-            priority.append('Length of Class')
-        if self.chkbox3 == Qt.Checked:
-            priority.append('Start Time')
-        if self.chkbox4 == Qt.Checked:
-            priority.append('End Time')
-        if self.chkbox5 == Qt.Checked:
-            priority.append('Instructor')
-        # self.priorityList.nodes = priority
+        if self.chkbox1.checkState() == Qt.Checked:
+            self.priority.append('School Day')
+        if self.chkbox2.checkState() == Qt.Checked:
+            self.priority.append('Length of Class')
+        if self.chkbox3.checkState() == Qt.Checked:
+            self.priority.append('Start Time')
+        if self.chkbox4.checkState() == Qt.Checked:
+            self.priority.append('End Time')
+        if self.chkbox5.checkState() == Qt.Checked:
+            self.priority.append('Instructor')
 
-        self.priorityList.show()
+        self.priorityList = MainForm(self.priority)
+        self.priorityList.setMaximumWidth(180)
+        self.priorityList.view.setFont(self.listFont)
 
+        self.widget2 = QWidget()
+        self.vl2 = QVBoxLayout(self.widget2)
+        self.vl2.addWidget(self.lb2)
+        self.vl2.addWidget(self.priorityList)
+        self.vl2.addWidget(self.buttonChange)
+        self.stl.addWidget(self.widget2)
+        self.stl.setCurrentIndex(1)
+
+        self.buttonChange.clicked.connect(lambda: self.passPriority())
+
+    def passPriority(self):
+        self.gui.guiData.setPriority(self.priorityList.nodes)
+        self.close()
+        self.gui.result.rank(self.guiData)
+        # self.reorderResult
 
     def checkBox(self, text, default):
         checkBox = QCheckBox()

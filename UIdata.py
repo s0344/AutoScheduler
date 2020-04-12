@@ -50,8 +50,8 @@ class UIdata():
     def setCourseLimit(self):
         self.__courseLimit = int(self.__gui.pCourse.limit.currentText())
 
-    def setPriority(self):
-        self.__priority = self.__gui.pResult.priorityList.nodes
+    def setPriority(self, p=('School Day', 'Length of Class', 'Start Time', 'End Time', 'Instructor')):
+        self.__priority = list(p)
 
     def setSchoolDay(self):
         self.__schoolDay = [self.__gui.pPreference.check1.checkState(),
