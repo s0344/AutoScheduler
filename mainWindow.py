@@ -1,5 +1,4 @@
 from PyQt5 import QtGui, QtCore
-from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QMovie
 from PyQt5.QtWidgets import *
 from pCourse import PanelCourse
@@ -9,13 +8,12 @@ from pResult import PanelResult
 from UIdata import *
 from core.coreDriver import coreDriver
 
-
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super(MainWindow, self).__init__()
         self.guiData = None
-        self.result = None
+        self.results = None
         """
         Draw the main window
         """
@@ -83,6 +81,16 @@ class MainWindow(QMainWindow):
         self.pPreference = PanelPreference()
         self.pResult = PanelResult()
 
+        '''
+        Status bar
+        '''
+        self.lbGif = QLabel()
+        self.lbText = QLabel("Progressing")
+        self.gif = QMovie("pictures/loading.gif")
+        self.gif.start()
+        self.lbGif.setScaledContents(True)
+        self.lbGif.setMovie(self.gif)
+        self.lbGif.setMaximumSize(20, 20)
 
         """
         Layout
@@ -129,7 +137,6 @@ class MainWindow(QMainWindow):
         self.pPreference.previous.clicked.connect(lambda: self.showPreviousPanel())
         # Panel Result
         self.pResult.previous.clicked.connect(lambda: self.showPreviousPanel())
-
     """
     Member functions
     """
@@ -160,8 +167,6 @@ class MainWindow(QMainWindow):
     def showPreviousPanel(self):
         if self.rightLayout.currentIndex() == 3:
             self.statusBar.showMessage("")
-            self.statusBar.removeWidget(self.lbText)
-            self.statusBar.removeWidget(self.lbGif)
         self.rightLayout.setCurrentIndex(self.rightLayout.currentIndex() - 1)
 
     # flag 1: full search(brute force), flag 0: quick search(return 1 worked result)
@@ -181,24 +186,49 @@ class MainWindow(QMainWindow):
             self.pPreference.previous.setDisabled(True)
             self.pPreference.fullSearch.setDisabled(True)
             self.pPreference.quickSearch.setDisabled(True)
-            self.lbGif = QLabel()
-            self.lbText = QLabel("Progressing")
-            self.gif = QMovie("pictures/loading.gif")
-            self.gif.start()
-            self.lbGif.setScaledContents(True)
-            self.lbGif.setMovie(self.gif)
-            self.lbGif.setMaximumSize(20, 20)
-            self.statusBar.addWidget(self.lbGif)
-            self.statusBar.addWidget(self.lbText)
+
+            self.loading()
+            if flag == 0:
+                self.pResult.buttonSort.setDisabled(True)
+            else:
+                self.pResult.buttonSort.setDisabled(False)
         else:
             self.dialog(self.guiData.errmsg, 0)
 
+    def loading(self):
+        self.lbGif = QLabel()
+        self.lbText = QLabel("Progressing")
+        self.gif = QMovie("pictures/loading.gif")
+        self.gif.start()
+        self.lbGif.setScaledContents(True)
+        self.lbGif.setMovie(self.gif)
+        self.lbGif.setMaximumSize(20, 20)
+        self.statusBar.addWidget(self.lbGif)
+        self.statusBar.addWidget(self.lbText)
+
     def progressFinish(self):
-        # self.pResult.drawResult()
+        self.results = self.th1.get_result()
+        if len(self.results.scheduleList) == 0:
+            msg = QMessageBox()
+            msg.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
+            msg.setWindowTitle("AutoScheduler")
+            msg.setFont(self.font)
+            msg.setText("No Result Found")
+            msg.setIcon(QMessageBox.Information)
+            self.drawFinish(0)
+        else:
+            self.pResult.drawResult(self.results.scheduleList)
+            self.drawFinish(1)
+
+    # flag = 1 if result found
+    def drawFinish(self, flag):
+        if flag:
+            self.showNextPanel()
         self.pPreference.previous.setDisabled(False)
         self.pPreference.fullSearch.setDisabled(False)
         self.pPreference.quickSearch.setDisabled(False)
-        self.showNextPanel()
+        self.statusBar.removeWidget(self.lbText)
+        self.statusBar.removeWidget(self.lbGif)
         self.statusBar.showMessage("Finished")
 
     # flag: 1 for info, 0 for errmsg
