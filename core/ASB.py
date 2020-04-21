@@ -188,7 +188,6 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                     continue
                 else:
                     pruneArray.append(pruneIndex)
-                    pruneIndex += 1
                     continue
 
             # check time conflict
@@ -205,7 +204,6 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                                     break
                                 else:
                                     pruneArray.append(pruneIndex)
-                                    pruneIndex += 1
                                     timeFlag = True
                                     break
                     if timeFlag:
@@ -222,7 +220,6 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                     continue
                 else:
                     pruneArray.append(pruneIndex)
-                    pruneIndex += 1
                     continue
 
             # check level conflict
@@ -238,11 +235,12 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                             break
                         else:
                             pruneArray.append(pruneIndex)
-                            pruneIndex += 1
                             lvflag = True
                             break
             if lvflag:
                 continue
+
+            pruneIndex += 1
 
         # prune the course first before going to next course
         if not flag:

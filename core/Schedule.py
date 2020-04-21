@@ -64,7 +64,7 @@ class Schedule():
                 # start checking each day(mon-fri)
                 for i in range(5):
                     if weekDay[i] in day:
-                        self.weekList[i].append((classes.start[index],classes.end[index],classes.crn))
+                        self.weekList[i].append((classes.start[index],classes.end[index],classes.crn,classes.location[index]))
                 index += 1  # increment to the index for next lesson
 
         for day in self.weekList:
