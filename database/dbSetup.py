@@ -1,4 +1,3 @@
-from database.DB import *
 from core.Course import *
 
 
@@ -9,7 +8,7 @@ if __name__ == '__main__':
     rootsFile = 'roots.csv'
     mapFile = 'map.csv'
 
-    testdb = DB()
+    testdb = DB("localhost", "root", "root")
     flag = testdb.createDatabase()  # return 1 if database is newly created, 0 if database already created
     testdb.importData(csFile, flag)
     testdb.importData(langFile, flag)
