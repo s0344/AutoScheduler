@@ -1,6 +1,7 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QColor
 from reorderableList import MainForm
 import math
 import sip
@@ -31,6 +32,10 @@ class PanelResult(QMainWindow):
         self.listFont.setPointSize(12)
         self.listFont.setBold(True)
         self.listFont.setWeight(75)
+
+        # colors
+        self.colorList = ["#EEADAD", "#A9E4EE", "#F7CDAB", "#A9C7EE", "#F7ECAB",
+                          "#C3C3F6", "#D0F7AB", "#F6C3F6", "#A9EED9", "#C5C4D8"]
 
         """
         Widgets
@@ -114,14 +119,99 @@ class PanelResult(QMainWindow):
     def __graphicSchedule(self, results, i):
         scheduleWidget = QWidget()
         scheduleWidget.setMinimumWidth(960)
-        scheduleWidget.setMinimumHeight(600)
+        scheduleWidget.setMinimumHeight(750)
         scheduleWidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         vl = QVBoxLayout(scheduleWidget)
-        label = QLabel("Result # " + str(i + 1))
-        label.setFont(self.fontB)
-        label.setMinimumHeight(50)
+        title = QLabel("Result # " + str(i + 1))
+        title.setFont(self.fontB)
 
-        list1 = QListWidget()       # time table
+        '''
+        Time table
+        '''
+        timeTable = QWidget()
+        timeTable.setStyleSheet('''
+        QWidget{ background-color : white; font: 9pt 'Oswald'; font-weight: bold; }
+        ''')
+        # timeTable.ensureVisible(900, 450)
+        # timeTable.setWidgetResizable(True)
+        gl = QGridLayout(timeTable)
+        gl.setSpacing(0)
+        lb1 = QLabel("Monday")
+        lb2 = QLabel("Tuseday")
+        lb3 = QLabel("Wednesday")
+        lb4 = QLabel("Thrusday")
+        lb5 = QLabel("Friday")
+        lb1.setAlignment(Qt.AlignHCenter)
+        lb2.setAlignment(Qt.AlignHCenter)
+        lb3.setAlignment(Qt.AlignHCenter)
+        lb4.setAlignment(Qt.AlignHCenter)
+        lb5.setAlignment(Qt.AlignHCenter)
+
+        gl.addWidget(lb1, 0, 1)
+        gl.addWidget(lb2, 0, 2)
+        gl.addWidget(lb3, 0, 3)
+        gl.addWidget(lb4, 0, 4)
+        gl.addWidget(lb5, 0, 5)
+        t = 8
+        for k in range(29):
+            if k % 2 == 1:
+                label = QLabel(str(t) + ":00")
+                t += 1
+            else:
+                label = QLabel("")
+
+            if k % 4 == 1 or k % 4 ==2:
+                cor = "#E6E6ED"
+            else:
+                cor = "#D2D2D9"
+            style = "QLabel { background-color : %s; font: 9pt 'Oswald'; font-weight: bold }" % cor
+            label.setStyleSheet(style)
+            gl.addWidget(label, k, 0)
+
+        crnList =[]
+        for crse in results[i].classList:
+            crnList.append(crse.crn)
+        week = results[i].weekList
+        for k in range(len(week)):
+            for lesson in week[k]:
+                st = lesson[0]
+                et = lesson[1]
+
+                d = et - st
+                dhr = d.seconds//3600
+                dmin = (d.seconds//60) % 60
+
+                rowIndex = (st.hour - 8)*2 + 1
+                if st.minute != 0:
+                    rowIndex += 1
+                rowSpan = dhr * 2
+                if rowSpan == 0:
+                    rowSpan = 1
+                if dmin != 0:
+                    rowSpan += 1
+                lessonCrn = lesson[2]
+                location = lesson[3]
+                colorIndex = crnList.index(lessonCrn)
+                color = self.colorList[colorIndex]
+
+                for c in range(rowSpan):
+                    for course in results[i].classList:
+                        if course.crn == lessonCrn:
+
+                            if c == 0:
+                                string = course.subj + " " + course.crse + "  (" + location + ")"
+                            elif c == 1:
+                                string = str(st.hour) + ":" + "{:02d}".format(st.minute) \
+                                      + " - " + str(et.hour) + ":" + "{:02d}".format(et.minute)
+                            else:
+                                string = ""
+
+                            label = QLabel(string)
+                            style = "QLabel { background-color : %s; color: blue; font: 9pt 'Oswald' }" % color
+                            label.setStyleSheet(style)
+                            gl.addWidget(label, rowIndex + c, k + 1)
+                            break
+
 
         '''
         Class information table
@@ -152,20 +242,20 @@ class PanelResult(QMainWindow):
             else:
                 days = QTableWidgetItem(crse.days[0])
 
+            stTemp = []
+            etTemp = []
             for x in range(len(crse.start)):
-                if type(crse.start[x]) is str:
-                    break
                 st = crse.start[x].strftime('%H:%M')
                 et = crse.end[x].strftime('%H:%M')
-                crse.start[x] = st
-                crse.end[x] = et
+                stTemp.append(st)
+                etTemp.append(et)
 
-            if len(crse.start) > 1:
-                start = QTableWidgetItem('\n'.join(crse.start))
-                end = QTableWidgetItem('\n'.join(crse.end))
+            if len(stTemp) > 1:
+                start = QTableWidgetItem('\n'.join(stTemp))
+                end = QTableWidgetItem('\n'.join(etTemp))
             else:
-                start = QTableWidgetItem(crse.start[0])
-                end = QTableWidgetItem(crse.end[0])
+                start = QTableWidgetItem(stTemp[0])
+                end = QTableWidgetItem(etTemp[0])
 
             inst = QTableWidgetItem(crse.inst)
 
@@ -262,8 +352,8 @@ class PanelResult(QMainWindow):
         hl.addWidget(classInfo)
         hl.addLayout(vl1)
 
-        vl.addWidget(label)
-        vl.addWidget(list1)
+        vl.addWidget(title)
+        vl.addWidget(timeTable)
         vl.addLayout(hl)
 
         return scheduleWidget

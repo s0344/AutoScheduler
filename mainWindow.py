@@ -23,6 +23,11 @@ class MainWindow(QMainWindow):
         self.centralWidget = QWidget(self)
         self.setCentralWidget(self.centralWidget)
         self.centralLayout = QHBoxLayout(self.centralWidget)   # Central Widget using horizontal layout
+        self.centralWidget.setAutoFillBackground(True)
+        p = self.centralWidget.palette()
+        p.setColor(self.centralWidget.backgroundRole(), Qt.lightGray)
+        self.centralWidget.setPalette(p)
+
         self.statusBar = self.statusBar()
 
         '''
