@@ -30,7 +30,7 @@ def bruteForceExecute(classList, classListLen, courseLimit, mandatoryList, lvLim
 def bruteForce(classList, temp, start, end, index, courseLimit, scheduleList, mandatoryList, lvLimitList, flag, startTime):
     checkTime = time.time()
     elapsed = checkTime - startTime
-    if elapsed > 3000:
+    if elapsed > 300:
         return
 
     # When the result is ready, check list and append to schedule list
