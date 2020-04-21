@@ -5,12 +5,12 @@ import pymysql
 
 class DB():
     # connect to database
-    def __init__(self, host, user, pswd):
+    def __init__(self, host="localhost", user="root", passwd="root"):
         # connect to mysql server and database
         self.db = pymysql.connect(
             host=host,
             user=user,
-            passwd=pswd,
+            passwd=passwd
         )
 
     def useDatabase(self):
