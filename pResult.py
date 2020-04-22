@@ -335,11 +335,8 @@ class PanelResult(QMainWindow):
         scheInfo.setItem(4, 0, QTableWidgetItem(r5))
         scheInfo.setItem(5, 0, QTableWidgetItem(r6))
 
-        btnExprot = QPushButton("Exprot")   # button exprot
-
         vl1 = QVBoxLayout()
         vl1.addWidget(scheInfo)
-        vl1.addWidget(btnExprot)
 
         hl = QHBoxLayout()
         spLeft = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
@@ -348,7 +345,6 @@ class PanelResult(QMainWindow):
         spRight = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         spRight.setHorizontalStretch(1)
         scheInfo.setSizePolicy(spRight)
-        btnExprot.setSizePolicy(spRight)
         hl.addWidget(classInfo)
         hl.addLayout(vl1)
 
