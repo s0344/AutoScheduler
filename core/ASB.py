@@ -101,7 +101,7 @@ def getCourse(courseList, priorityCount, mandatoryList, lvLimitLst):
 # return a course with least classes in it
 def findLeastSectionCourse(tempCourse, backtrackFlag):
     # first check if there are any class left, if yes: flag=true, if no flag=false
-    smallestCount = len(tempCourse[0].classList)
+    smallestCount = 9999
     smallestIndex = 0
     checkFlag = True
 
@@ -111,10 +111,11 @@ def findLeastSectionCourse(tempCourse, backtrackFlag):
             checkFlag = False
             break
 
+
+
+
     # find the course with the least classes
     for i in range(0,len(tempCourse)):
-        if not i:
-            continue
         tempCount = len(tempCourse[i].classList)
         if  tempCount < smallestCount and tempCount > 0:
             smallestCount = tempCount
