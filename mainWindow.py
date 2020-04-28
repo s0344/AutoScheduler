@@ -201,6 +201,7 @@ class MainWindow(QMainWindow):
             self.dialog(self.guiData.errmsg, 0)
 
     def loading(self):
+        self.statusBar.showMessage("")
         self.lbGif = QLabel()
         self.lbText = QLabel("Progressing")
         self.gif = QMovie("pictures/loading.gif")
@@ -213,13 +214,14 @@ class MainWindow(QMainWindow):
 
     def progressFinish(self):
         self.results = self.th1.get_result()
-        if len(self.results.scheduleList) == 0:
+        if len(self.results.scheduleList[0].classList) == 0:
             msg = QMessageBox()
             msg.setWindowIcon(QtGui.QIcon("pictures/prgmIcon.png"))
             msg.setWindowTitle("AutoScheduler")
             msg.setFont(self.font)
             msg.setText("No Result Found")
             msg.setIcon(QMessageBox.Information)
+            msg.exec()
             self.drawFinish(0)
         else:
             self.pResult.drawResult(self.results.scheduleList)
