@@ -198,7 +198,11 @@ class PanelResult(QMainWindow):
                         if course.crn == lessonCrn:
 
                             if c == 0:
-                                string = course.subj + " " + course.crse + "  (" + location + ")"
+                                if str.isdigit(course.sec):
+                                    sec = str("{:02d}".format(int(course.sec)))
+                                else:
+                                    sec = course.sec
+                                string = course.subj + " " + course.crse + "-" + sec + " (" + location + ")"
                             elif c == 1:
                                 string = str(st.hour) + ":" + "{:02d}".format(st.minute) \
                                       + " - " + str(et.hour) + ":" + "{:02d}".format(et.minute)
@@ -233,9 +237,15 @@ class PanelResult(QMainWindow):
 
         count = 0
         for crse in results[i].classList:
+            type(crse.sec)
             crn = QTableWidgetItem(str(crse.crn))
             crseNum = QTableWidgetItem(str(crse.subj) + " " + str(crse.crse))
-            sec = QTableWidgetItem(str("{:02d}".format(int(crse.sec))))
+
+            if str.isdigit(crse.sec):
+                sec = QTableWidgetItem(str("{:02d}".format(int(crse.sec))))
+            else:
+                sec = QTableWidgetItem(crse.sec)
+
             if len(crse.days) > 1:
                 days = QTableWidgetItem('\n'.join(crse.days))
             else:
