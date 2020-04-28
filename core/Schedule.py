@@ -144,11 +144,7 @@ class Schedule():
 
         # handling the classLength
         for i in range(3):
-            if classLenPref[i]:
-                if classLenRef[i] not in classLenList:  # when it is 1 but classLength not in the list
-                    self.classLenCheck = False
-                    break
-            else:
+            if not classLenPref[i]:
                 if classLenRef[i] in classLenList:  # when it is 0 but classLength is in the list
                     self.classLenCheck = False
                     break
@@ -242,20 +238,20 @@ class Schedule():
         dayScore = [0,0,0,0,0]
         for day in range(5):
             for i in range(1,len(locationList[day])):
-                location = locationList[day][i]
-                lastLocation = locationList[day][i-1]
+                location = locationList[day][i].split()
+                lastLocation = locationList[day][i-1].split()
 
                 # if location is TBA, assume the area is going to change
-                if location == "TBA" or lastLocation == "TBA":
+                if location[0] == "TBA" or lastLocation[0] == "TBA":
                     dayScore[day] += 100
                     continue
 
-                building = location[0:3]
-                lastBuilding = lastLocation[0:3]
+                building = location[0]
+                lastBuilding = lastLocation[0]
                 area = mapDict[building]
                 lastArea = mapDict[lastBuilding]
-                floor = location[4]
-                lastFloor = lastLocation[4]
+                floor = location[1][0]
+                lastFloor = lastLocation[1][0]
 
                 if building != lastBuilding:
                     if area != lastArea:  # if area changed +100

@@ -24,12 +24,17 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
     result = []
     lastMand = ''
     lastLv = ''
+    manConstList = []
+    lvList = []
+    for mandatory in mandatoryList:
+        manConstList.append(mandatory[0]+mandatory[1])
 
     # set up the list
     for limit in lvLimitList:
         if limit[1].isnumeric():
             lvLimitLst.append([limit[0], int(limit[1])])
             lvLimitCount.append([limit[0], 0])
+            lvList.append(limit[0])
 
     # set up priority count
     if not mandatoryList:
@@ -46,7 +51,9 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
         courseSelected = findLeastSectionCourse(tempCourse, backtrackFlag)
         updatePriority(courseSelected, priorityCount, mandatoryList, lvLimitLst, lvLimitCount, lastMand, lastLv)
         if not backtrackFlag[0]:
-            signal = backtrack(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList, result)
+            print("backtrack")
+            print("result:",len(result))
+            signal = backtrack(backtrackState, poppedCourse, courseList, manConstList, lvList, priorityCount, lvLimitCount, mandatoryList, result)
             if signal:
                 print("done")
                 return [Schedule([])] # NO RESULT
@@ -58,7 +65,8 @@ def ASBAlgo(courseList, lvLimitList, mandatoryList, courseLimit):
         # Append class to result
         result.append(selectedClass)
         courseCount += 1
-
+        print("result added")
+        print("result:", len(result))
         # Prune the courseList
         prune(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse)
     print("done")
@@ -80,7 +88,7 @@ def getCourse(courseList, priorityCount, mandatoryList, lvLimitLst):
     # looking for course in the level
     elif priorityCount[0] == 1:
         for course in courseList:
-            level = course.subj + course.crse[0]
+            level = course.subj +" "+ course.crse[0]
             for levels in lvLimitLst:
                 if level == levels[0]:
                     temp.append(course)
@@ -97,21 +105,16 @@ def findLeastSectionCourse(tempCourse, backtrackFlag):
     smallestIndex = 0
     checkFlag = True
 
-    for i in range(1, len(tempCourse)):
-        # initialize the smallest count and index with max
-        if len(tempCourse[i].classList) > smallestCount:
-            smallestCount = len(tempCourse[i].classList)
-            smallestIndex = i
-
+    for i in range(0, len(tempCourse)):
         if len(tempCourse[i].classList) > 0 and checkFlag:
             backtrackFlag[0] = 1
             checkFlag = False
-            continue
-
-
+            break
 
     # find the course with the least classes
-    for i in range(1,len(tempCourse)):
+    for i in range(0,len(tempCourse)):
+        if not i:
+            continue
         tempCount = len(tempCourse[i].classList)
         if  tempCount < smallestCount and tempCount > 0:
             smallestCount = tempCount
@@ -175,7 +178,7 @@ def prune(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse):
 def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse, flag):
     count = 0
     tempValue = []
-    tempKey = selectedClass.subj + selectedClass.crse
+    tempKey = selectedClass.subj + " " + selectedClass.crse
 
     for course in courseList:
         pruneArray = []
@@ -197,7 +200,7 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                     for j in range(len(classes.days)):  # iterate through days in classes
                         if selectedDay in classes.days[j]:
                             if selectedClass.start[i] >= classes.start[j] and selectedClass.start[i] <= classes.end[j] \
-                                or selectedClass.end[i] >= classes.end[j] and selectedClass.end[i] <= classes.end[j]:
+                                or selectedClass.end[i] >= classes.start[j] and selectedClass.end[i] <= classes.end[j]:
                                 if flag:
                                     count += 1
                                     timeFlag = True
@@ -223,8 +226,8 @@ def pruneCheck(selectedClass, courseList, lvLimitLst, lvLimitCount, poppedCourse
                     continue
 
             # check level conflict
-            selectedLevel = selectedClass.subj + selectedClass.crse[0]
-            level = classes.subj + classes.crse[0]
+            selectedLevel = selectedClass.subj +" "+ selectedClass.crse[0]
+            level = classes.subj +" "+ classes.crse[0]
             lvflag = False
             for i in range(len(lvLimitLst)):
                 if selectedLevel == lvLimitLst[i][0]:
@@ -263,50 +266,63 @@ def createPopCourse(subj, crse):
     return course
 
 # resume to previous state
-def backtrack(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList, result):
+def backtrack(backtrackState, poppedCourse, courseList, manConstList, lvList, priorityCount, lvLimitCount, mandatoryList, result):
     # a signal that indicates if there are no result or the courseList is restored
     signal = 0
     # initialize backtrack count
-    if backtrackState[0] == -1:
-        backtrackState[0] = len(poppedCourse)-1
+    if backtrackState[0] == -1 or len(poppedCourse) > backtrackState[0]:
+        backtrackState[0] = len(poppedCourse)
 
     # restore popped course to course list
     # first check if popped course is empty
     # if it is at root and empty = no result
     # if not at root but empty = go one level up -> count -= 1
-    isEmpty = True
+    isLevelEmpty = True
+    isAllEmpty = True
+
+    key = getKey(poppedCourse, backtrackState[0]-1)
+    for popped in poppedCourse[key]:
+        if len(popped.classList) > 0:
+            isLevelEmpty = False
+            break
+
     for node, courseLst in poppedCourse.items():
         for course in courseLst:
             if len(course.classList) > 0:
-                isEmpty = False
+                isAllEmpty = False
                 break
 
-    if backtrackState[0] > 0 and isEmpty:
-        backtrackState[0] -= 1
-    elif backtrackState[0] == 0 and isEmpty:
+    if priorityCount[0] == 0 or priorityCount[0] == 1:
         signal = 1
         return signal
 
-    restore(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList,  result)
+
+    if backtrackState[0] > 1 and isLevelEmpty:
+        backtrackState[0] -= 1
+    elif backtrackState[0] == 1 and isAllEmpty:
+        signal = 1
+        return signal
+
+    restore(backtrackState, poppedCourse, courseList, manConstList, lvList, priorityCount, lvLimitCount, mandatoryList,  result)
     return signal
 
 # start restoring the poppedCourse from the bottom
-def restore(backtrackState, poppedCourse, courseList, lastMand, lastLv, priorityCount, lvLimitCount, mandatoryList,  result):
+def restore(backtrackState, poppedCourse, courseList, manConstList, lvList, priorityCount, lvLimitCount, mandatoryList,  result):
     for i in range(len(poppedCourse)-1, backtrackState[0]-1, -1):
-        print(len(poppedCourse)-1)
-        print(backtrackState[0]-1)
-        print(poppedCourse)
-        print(i)
         key = getKey(poppedCourse, i)
+        keyLv = key.split()
+        keyLv = keyLv[0]+" "+keyLv[1][0]
         # restore priority
-        if key == lastLv:
+        if keyLv in lvList:
             priorityCount[0] = 1
-        elif key == lastMand:
+        elif key in manConstList:
             priorityCount[0] = 0
 
         # restore mandatoryList and lvLimitLst
         for levels in lvLimitCount:
-            if key[0:5] == levels[0]:
+            level = levels.split()
+            key = key.split()
+            if key[0] == level[0] and key[1][0] == level[1]:
                 if priorityCount[0] < 2:
                     levels[1] -= 1
                 if priorityCount[0] == 0:
@@ -324,9 +340,7 @@ def restore(backtrackState, poppedCourse, courseList, lastMand, lastLv, priority
         # pop the poppedCourse dict
         poppedCourse.pop(key)
         # pop the result
-        print(result)
-        print(type(result))
-        result = result.pop(i)
+        result.pop(i)
 
 def getKey(dict, n):
     items = list(dict.items())

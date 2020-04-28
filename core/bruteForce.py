@@ -99,7 +99,7 @@ def checkClasses(temp, mandatoryList, lvLimitList):
     # check level limit
     level = {}
     for classes in temp:
-        levelstr = classes.subj + classes.crse[0]
+        levelstr = classes.subj + " " + classes.crse[0]
         if not lvLimitList[levelstr].isnumeric():   # check if it should be ignored
             continue
         else:  # when it shouldn't be ignored

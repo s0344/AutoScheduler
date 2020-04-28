@@ -22,7 +22,7 @@ def coreDriver(data, flag):
     print("> Adding data to course list...  ", end="")
     for subjLv in course:
         crseList = subjLv.crseList
-        lvLimitList.append((subjLv.subj + subjLv.lv[0], subjLv.lvLimit))
+        lvLimitList.append((subjLv.subj + " " + subjLv.lv[0], subjLv.lvLimit))
         for crse in crseList:
             if int(crse.mandatory):
                 mandatoryList.append((subjLv.subj, crse.crseNum, crse.mandatory))
@@ -77,10 +77,18 @@ def coreDriver(data, flag):
         classLenPref = data.getClassLen()
         classLenRef = ["0:50", "1:15", "2:45"]
 
+        print(schoolDayPref)
+        print(instPref)
+        print(startPref)
+        print(endPref)
+        print(classLenPref)
+        print(classLenRef)
+
         # prune the class first to reduce the size of initial data
         for course in courseList:
             length = len(course.classList)
             i = 0
+            popindex = []
             while i < length:
                 flag = False
 
@@ -91,9 +99,8 @@ def coreDriver(data, flag):
                     if not schoolDayPref[j]:
                         for day in course.classList[i].days:
                             if weekDay[j] in day:
-                                course.classList.pop(i)
+                                popindex.append(i)
                                 flag = True
-                                length -= 1
                                 break
                     if flag:
                             break
@@ -109,9 +116,8 @@ def coreDriver(data, flag):
                 for inst in instPref:
                     if inst[0]==subj and inst[1]==crse:
                         if inst[2]==instructor:
-                            course.classList.pop(i)
+                            popindex.append(i)
                             flag = True
-                            length -= 1
                             break
                     else:
                         continue
@@ -125,9 +131,8 @@ def coreDriver(data, flag):
                     for day in course.classList[i].days:
                         if weekDay[j] in day:
                             if course.classList[i].start[count] < startPref[j] or course.classList[i].end[count] > endPref[j]:
-                                course.classList.pop(i)
+                                popindex.append(i)
                                 flag = True
-                                length -= 1
                                 break
                         count += 1
                     if flag:
@@ -141,9 +146,8 @@ def coreDriver(data, flag):
                     if not classLenPref[j]:
                         for classLen in course.classList[i].classTime:
                             if classLenRef[j] == classLen:
-                                course.classList.pop(i)
+                                popindex.append(i)
                                 flag = True
-                                length -= 1
                                 break
                     if flag:
                             break
@@ -152,6 +156,11 @@ def coreDriver(data, flag):
                     continue
 
                 i += 1
+
+            # pop the classes before going to next course
+            for index in sorted(popindex, reverse=True):
+                course.classList.pop(index)
+
         print("done")
 
         # now we done with pruning the courseList, we can send it to the algorithm
