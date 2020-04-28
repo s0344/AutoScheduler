@@ -1,7 +1,6 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QColor
 from reorderableList import MainForm
 import math
 import sip
