@@ -320,11 +320,11 @@ class PanelResult(QMainWindow):
         if results[i].schoolDayCheck == 3:
             r1 = "Extra Day Off"
         elif results[i].schoolDayCheck == 2:
-            r1 = "Match Preferences"
+            r1 = "Match Preference"
         elif results[i].schoolDayCheck == 1:
-            r1 = "Does not match, but day off exists"
+            r1 = "Does not match,\nbut day off exists"
         elif results[i].schoolDayCheck == 0:
-            r1 = "Does not match, no day off"
+            r1 = "Does not match,\nno day off"
 
         r2 = str(results[i].startCheck) + " Day matched"
         r3 = str(results[i].endCheck) + " Day matched"
