@@ -1,4 +1,4 @@
-# AutoScheduler2
+# AutoScheduler3
 
 A program that find the schedule you wants. This is a conceptual program where the data are "fake".
 
