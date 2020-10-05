@@ -1,5 +1,6 @@
-# AutoScheduler2
+# AutoScheduler
 
+Hello World~~
 A program that find the schedule you wants. This is a conceptual program where the data are "fake".
 
 In order to put this program in use, the `.csv` file and `dbsetup.py` should be updated.
